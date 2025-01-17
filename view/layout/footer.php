@@ -89,13 +89,7 @@
     
     
     <!-- All charts Script -->
-    
-    
-    
-    
-    
     <script src="assets/js/vertical_slider.js" defer></script>
-    
     <script src="assets/js/slider5438.js?v=1.2.0" defer></script>
     
     <!-- Hopeui Script -->
@@ -131,6 +125,11 @@
     
     
     <!--Custom js -->
+
+    <!--JQjuery CDN-->
+    
+
+
 </body>
 
 
