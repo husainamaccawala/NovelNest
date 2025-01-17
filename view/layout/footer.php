@@ -1,3 +1,6 @@
+<?php
+$baseUrl = '/novelnest';
+?>
 
         <!-- Footer Section Start -->
         <footer class="footer">
@@ -31,43 +34,43 @@
 
 
     <!-- Library Bundle Script -->
-    <script src="assets/js/core/libs.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/core/libs.min.js"></script>
     <!-- Plugin Scripts -->
     <!-- Flatpickr Script -->
-    <script src="assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
     
     
     
     <!-- Slider-tab Script -->
-    <script src="assets/js/plugins/slider-tabs.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/slider-tabs.js"></script>
     
     
     <!-- Sweet-alert Script -->
-    <script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js" async></script>
-    <script src="assets/js/plugins/sweet-alert.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js" async></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/sweet-alert.js" defer></script>
     
     
     <!-- Select2 Script -->
-    <script src="assets/js/plugins/select2.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/select2.js" defer></script>
     
     
     
     <!-- SwiperSlider Script -->
-    <script src="assets/vendor/swiperSlider/swiper.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/vendor/swiperSlider/swiper.min.js"></script>
     
     
     <!-- Lodash Utility -->
-    <script src="assets/vendor/lodash/lodash.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/vendor/lodash/lodash.min.js"></script>
     <!-- Utilities Functions -->
-    <script src="assets/js/iqonic-script/utility.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/iqonic-script/utility.min.js"></script>
     <!-- Settings Script -->
-    <script src="assets/js/iqonic-script/setting.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/iqonic-script/setting.min.js"></script>
     <!-- Settings Init Script -->
-    <script src="assets/js/setting-init.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/setting-init.js"></script>
     <!-- External Library Bundle Script -->
-    <script src="assets/js/core/external.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/core/external.min.js"></script>
     <!-- Dashboard Script -->
-    <script src="assets/js/Charts/dashboard.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/Charts/dashboard.js" defer></script>
     
     
     <!-- All Plugins Script -->
@@ -76,31 +79,37 @@
     
     
     <!-- Flatpickr Script -->
-    <script src="assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
-    <script src="assets/js/plugins/flatpickr.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/vendor/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/flatpickr.js" defer></script>
     
     
     <!-- Select2 Script -->
-    <script src="assets/js/plugins/select2.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/select2.js" defer></script>
     
     <!-- Sweet-alert Script -->
-    <script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js" async></script>
-    <script src="assets/js/plugins/sweet-alert.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.js" async></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/sweet-alert.js" defer></script>
     
     
     <!-- All charts Script -->
-    <script src="assets/js/vertical_slider.js" defer></script>
-    <script src="assets/js/slider5438.js?v=1.2.0" defer></script>
+    
+    
+    
+    
+    
+    <script src="<?= $baseUrl ?>/assets/js/vertical_slider.js" defer></script>
+    
+    <script src="<?= $baseUrl ?>/assets/js/slider5438.js?v=1.2.0" defer></script>
     
     <!-- Hopeui Script -->
-    <script src="assets/js/NovelNest5438.js?v=1.2.0" defer></script>
-    <script src="assets/js/NovelNest-advance5438.js?v=1.2.0" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/NovelNest5438.js?v=1.2.0" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/NovelNest-advance5438.js?v=1.2.0" defer></script>
     
-    <script src="assets/js/sidebar5438.js?v=1.2.0" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/sidebar5438.js?v=1.2.0" defer></script>
     
     
-    <script src="assets/js/plugins/select2.js" defer></script>
-    <script src="assets/js/Setting/enchanter.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/plugins/select2.js" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/Setting/enchanter.js" defer></script>
     
     
     <!--morris chart -->
@@ -127,8 +136,7 @@
     <!--Custom js -->
 
     <!--JQjuery CDN-->
-    
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 

@@ -1,3 +1,6 @@
+<?php
+$baseUrl = '/novelnest';
+?>
 <!doctype html>
 <html lang="en" class="theme-fs-sm" data-bs-theme-color="default" dir="ltr">
 
@@ -31,44 +34,44 @@
     <!-- Google Font Api KEY-->
     <meta name="google_font_api" content="AIzaSyBG58yNdAjc20_8jAvLNSVi9E4Xhwjau_k">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/logo-mini.png" />
+    <link rel="shortcut icon" href="<?= $baseUrl ?>/assets/images/logo-mini.png" />
 
     <!-- Library / Plugin Css Build -->
-    <link rel="stylesheet" href="assets/css/core/libs.min.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/core/libs.min.css" />
 
     <!-- flaticon css -->
-    <link rel="stylesheet" href="assets/vendor/flaticon/css/flaticon.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/flaticon/css/flaticon.css" />
 
     <!-- font-awesome css -->
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/font-awesome/css/font-awesome.min.css" />
 
 
 
     <!-- SwiperSlider css -->
-    <link rel="stylesheet" href="assets/vendor/swiperSlider/swiper.min.css">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/swiperSlider/swiper.min.css">
 
 
 
 
 
     <!-- Flatpickr css -->
-    <link rel="stylesheet" href="assets/vendor/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/flatpickr/dist/flatpickr.min.css" />
 
     <!-- Sweetlaert2 css -->
-    <link rel="stylesheet" href="assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 
 
     <!-- booksto Design System Css -->
-    <link rel="stylesheet" href="assets/css/booksto.min5438.css?v=1.2.0" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/booksto.min5438.css?v=1.2.0" />
 
     <!-- Custom Css -->
-    <link rel="stylesheet" href="assets/css/custom.min5438.css?v=1.2.0" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/custom.min5438.css?v=1.2.0" />
 
     <!-- RTL Css -->
-    <link rel="stylesheet" href="assets/css/rtl.min5438.css?v=1.2.0" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/rtl.min5438.css?v=1.2.0" />
 
     <!-- Customizer Css -->
-    <link rel="stylesheet" href="assets/css/customizer.min5438.css?v=1.2.0" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/customizer.min5438.css?v=1.2.0" />
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -79,20 +82,20 @@
         rel="stylesheet">
 
 
-    <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/remixicon/fonts/remixicon.css" />
 
-    <link rel="stylesheet" href="assets/vendor/dripicons/webfont/webfont.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/dripicons/webfont/webfont.css" />
 
-    <link rel="stylesheet" href="assets/vendor/ionicons/css/ionicons.min.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/ionicons/css/ionicons.min.css" />
 
-    <link rel="stylesheet" href="assets/vendor/line-awesome/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/line-awesome/css/line-awesome.min.css" />
 
     <!-- Phosphor icons  -->
-    <link rel="stylesheet" href="assets/vendor/phosphor-icons/Fonts/regular/style.css">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/phosphor-icons/Fonts/regular/style.css">
     </link>
-    <link rel="stylesheet" href="assets/vendor/phosphor-icons/Fonts/duotone/style.css">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/phosphor-icons/Fonts/duotone/style.css">
     </link>
-    <link rel="stylesheet" href="assets/vendor/phosphor-icons/Fonts/fill/style.css">
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/phosphor-icons/Fonts/fill/style.css">
     </link>
 
 </head>
@@ -102,7 +105,7 @@
     <!-- <div id="loading">
         <div class="loader simple-loader">
             <div class="loader-body">
-                <img src="assets\images\pageload.gif" alt="loader" class="light-loader img-fluid " width="300">
+                <img src="<?= $baseUrl ?>/assets\images\pageload.gif" alt="loader" class="light-loader img-fluid " width="300">
             </div>
         </div>    </div> -->
     <!-- loader END -->
@@ -114,13 +117,13 @@
                 <div class="logo-main ">
 
                     <img class="logo-normal img-fluid "
-                        src="assets/images/logo.png" height="30" alt="logo" style="width: 200px; height: auto;">
+                        src="<?= $baseUrl ?>/assets/images/logo.png" height="30" alt="logo" style="width: 200px; height: auto;">
                     <img class="logo-color img-fluid "
-                        src="assets\images\logo-white.png" height="30" alt="logo">
+                        src="<?= $baseUrl ?>/assets\images\logo-white.png" height="30" alt="logo">
                     <!-- <img class="logo-mini img-fluid"
-                        src="assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
+                        src="<?= $baseUrl ?>/assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
                     <img class="logo-mini-white img-fluid"
-                        src="assets\images\logo_mini_white.png" alt="logo"> -->
+                        src="<?= $baseUrl ?>/assets\images\logo_mini_white.png" alt="logo"> -->
 
                 </div>
                 <!--logo End-->
@@ -147,7 +150,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active"
+                        <a class="nav-link"
                             aria-current="page"
                             href="#">
                             <i class="icon" data-bs-toggle="tooltip" title="Dashboard"
@@ -188,7 +191,7 @@
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="#">
+                            href="<?=$baseUrl?>/view/user/user-list.php">
                             <i class="icon" data-bs-toggle="tooltip" title="User"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-identification-badge"></i>
@@ -239,13 +242,13 @@
                      <div class="logo-main ">
                      
                          <img class="logo-normal  "
-                             src="assets/images/logo.png" height="30" alt="logo">
+                             src="<?= $baseUrl ?>/assets/images/logo.png" height="30" alt="logo">
                          <img class="logo-color  "
-                             src="assets/images/logo-white.png" height="30" alt="logo">
+                             src="<?= $baseUrl ?>/assets/images/logo-white.png" height="30" alt="logo">
                          <img class="logo-mini "
-                             src="assets/images/logo-mini.png" alt="logo">
+                             src="<?= $baseUrl ?>/assets/images/logo-mini.png" alt="logo">
                          <img class="logo-mini-white "
-                             src="assets/images/logo-mini-white.png" alt="logo">
+                             src="<?= $baseUrl ?>/assets/images/logo-mini-white.png" alt="logo">
                      
                      </div>
                      <!--logo End-->
@@ -318,7 +321,7 @@
                               id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               <div class="icon-50">
                                  <span class="btn-inner d-inline-block position-relative">
-                                    <img src="assets/images/avatars/1.jpg"
+                                    <img src="<?= $baseUrl ?>/assets/images/avatars/1.jpg"
                                        class="img-fluid rounded-circle object-fit-cover avatar-50" alt="icon">
                                     <span
                                        class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
