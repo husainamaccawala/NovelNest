@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title data-setting="app_name" data-rightJoin=" Book store management system">NovelNest: Online Reading Platform</title>
+    <title data-setting="#" data-rightJoin="NovelNest: Online Reading Platform">NovelNest: Online Reading Platform</title>
     <meta name="description"
         content="Booksto is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
     <meta name="keywords"
