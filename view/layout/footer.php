@@ -102,8 +102,8 @@ $baseUrl = '/novelnest';
     <script src="<?= $baseUrl ?>/assets/js/slider5438.js?v=1.2.0" defer></script>
     
     <!-- Hopeui Script -->
-    <script src="<?= $baseUrl ?>/assets/js/NovelNest5438.js?v=1.2.0" defer></script>
-    <script src="<?= $baseUrl ?>/assets/js/NovelNest-advance5438.js?v=1.2.0" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/booksto5438.js?v=1.2.0" defer></script>
+    <script src="<?= $baseUrl ?>/assets/js/booksto-advance5438.js?v=1.2.0" defer></script>
     
     <script src="<?= $baseUrl ?>/assets/js/sidebar5438.js?v=1.2.0" defer></script>
     
@@ -135,8 +135,8 @@ $baseUrl = '/novelnest';
     
     <!--Custom js -->
 
-    <!--JQjuery CDN-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--jQuery AJAX-->
+    <script src="<?= $baseUrl ?>/assets/js/ajax/user.js"></script>
 
 </body>
 
