@@ -1,7 +1,7 @@
 $(document).ready(function () {
     console.log("the script is loaded ");
 
-    const baseUrl = '/novelnest';
+    const baseUrl = '/NovelNest';
 
     // Fetch and display users
     function fetchUsers() {

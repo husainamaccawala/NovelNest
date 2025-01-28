@@ -1,5 +1,5 @@
 <?php
-$baseUrl = '/novelnest';
+$baseUrl = '/NovelNest';
 ?>
 
         <!-- Footer Section Start -->

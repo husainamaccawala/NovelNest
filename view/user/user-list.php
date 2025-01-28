@@ -1,5 +1,5 @@
 <?php
-$baseUrl = '/novelnest';
+$baseUrl = '/NovelNest';
 require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/layout/header.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/user-edit-form.php";
 ?>

@@ -1,5 +1,5 @@
 <?php
-$baseUrl = '/novelnest';
+$baseUrl = '/NovelNest';
 ?>
 <!doctype html>
 <html lang="en" class="theme-fs-sm" data-bs-theme-color="default" dir="ltr">
