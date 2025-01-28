@@ -25,7 +25,7 @@ $(document).ready(function () {
                             <td>${user.email}</td> 
                             <td>${user.gender}</td> 
                             <td>
-                                <button class="btn btn-info btn-sm editBtn" data-id="${user.id}">Edit</button>
+                                <button class="btn btn-primary btn-sm editBtn" data-id="${user.id}">Edit</button>
                                 <button class="btn btn-danger btn-sm deleteBtn" data-id="${user.id}">Delete</button>
                             </td> 
                         </tr>`;

@@ -130,13 +130,9 @@ $baseUrl = '/novelnest';
     <script src="../../../cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="../../../cdn.amcharts.com/lib/4/themes/animated.js"></script>
     
-    <!--Widget Chart -->
-    
-    
-    <!--Custom js -->
+  
 
-    <!--jQuery AJAX-->
-    <script src="<?= $baseUrl ?>/assets/js/ajax/user.js"></script>
+  
 
 </body>
 

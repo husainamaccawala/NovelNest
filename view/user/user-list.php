@@ -42,6 +42,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/user-edit-form.p
 </div>
 
 
-
+<!--jQuery AJAX-->
+<script src="<?= $baseUrl ?>/assets/js/ajax/user.js" defer></script>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/layout/footer.php"; ?>

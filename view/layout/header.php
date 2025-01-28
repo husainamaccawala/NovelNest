@@ -175,19 +175,75 @@ $baseUrl = '/novelnest';
                             <span class="item-name">Genres</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="#">
+
+                    <li class="nav-item iq-drop">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#user" role="button"
+                            aria-expanded="false">
                             <i class="icon" data-bs-toggle="tooltip" title="Books"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-book-bookmark"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Books" data-bs-placement="right">Bk</i>
                             <span class="item-name">Books</span>
+                            <i class="right-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                    class="icon-18" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </i>
                         </a>
+                        <ul class="sub-nav collapse" id="user" data-bs-parent="#sidebar-menu">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link "
+                                    aria-current="page"
+                                    href="#">
+                                    <i class="icon" data-bs-toggle="tooltip" title="User List"
+                                        data-bs-placement="right">
+                                        <i class="ph-duotone ph-rows"></i>
+                                    </i>
+                
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
+                                        title="Book List"
+                                        data-bs-placement="right">Bl</i>
+                                    <span class="item-name">Book List</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link "
+                                    aria-current="page"
+                                    href="#">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Book PDF"
+                                        data-bs-placement="right">
+                                        <i class="ph-duotone ph-file-pdf"></i>
+                                    </i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
+                                        title="E-Books"
+                                        data-bs-placement="right">eb</i>
+                                    <span class="item-name">E-Books</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link "
+                                    aria-current="page"
+                                    href="#">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Audiobooks"
+                                        data-bs-placement="right">
+                                        <i class="fa fa-file-audio-o"></i>
+                                    </i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
+                                        title="Audiobooks"
+                                        data-bs-placement="right">ab</i>
+                                    <span class="item-name">Audiobooks</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
