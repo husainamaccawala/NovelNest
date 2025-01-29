@@ -1,7 +1,7 @@
 <?php
 $baseUrl = '/NovelNest';
 require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/layout/header.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/userForm.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/audiobook/audiobookForm.php";
 ?>
 
 
@@ -12,7 +12,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/userForm.php";
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">User List</h4>
+                            <h4 class="card-title">Audiobook List</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#audiobookModal">Add New AudioBook</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -21,16 +24,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/userForm.php";
                                 <thead class="">
                                     <tr class="bg-white">
                                         <th scope="col" class="border-bottom bg-primary text-white">Srno.</th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Profile</th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Name </th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Contact</th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Email</th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Gender</th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Book</th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Narrator </th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Duration</th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Language</th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Audiobook</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Users will be dynamically loaded here -->
+                                    <!-- Audiobook rows will be dynamically loaded here -->
                                 </tbody>
                             </table>
                         </div>
@@ -42,7 +45,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/userForm.php";
 </div>
 
 
+
 <!--jQuery AJAX-->
-<script src="<?= $baseUrl ?>/assets/js/ajax/user.js" defer></script>
+<script src="<?= $baseUrl ?>/assets/js/ajax/audiobook.js" defer></script>
 
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/layout/footer.php"; ?>

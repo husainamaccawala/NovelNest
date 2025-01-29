@@ -1,5 +1,5 @@
 <?php
-$baseUrl = '/Novelnest';
+$baseUrl = '/NovelNest';
 ?>
 <!doctype html>
 <html lang="en" class="theme-fs-sm" data-bs-theme-color="default" dir="ltr">
@@ -98,6 +98,13 @@ $baseUrl = '/Novelnest';
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/phosphor-icons/Fonts/fill/style.css">
     </link>
 
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+
+    <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="  ">
@@ -107,12 +114,13 @@ $baseUrl = '/Novelnest';
             <div class="loader-body">
                 <img src="<?= $baseUrl ?>/assets\images\pageload.gif" alt="loader" class="light-loader img-fluid " width="300">
             </div>
-        </div>    </div>
+        </div>
+    </div>
     <!-- loader END -->
     <aside class="sidebar sidebar-base " id="first-tour" data-toggle="main-sidebar"
         data-sidebar="responsive">
         <div class="sidebar-header d-flex align-items-center justify-content-start position-relative">
-            <a href="index-2.html" class="navbar-brand">
+            <a href="<?= $baseUrl ?>/index.php" class="navbar-brand">
                 <!--Logo start-->
                 <div class="logo-main ">
 
@@ -120,10 +128,10 @@ $baseUrl = '/Novelnest';
                         src="<?= $baseUrl ?>/assets/images/logo.png" height="30" alt="logo" style="width: 200px; height: auto;">
                     <img class="logo-color img-fluid "
                         src="<?= $baseUrl ?>/assets\images\logo-white.png" height="30" alt="logo">
-                    <!-- <img class="logo-mini img-fluid"
-                        src="/assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
+                    <img class="logo-mini img-fluid"
+                        src="<?= $baseUrl ?>/assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
                     <img class="logo-mini-white img-fluid"
-                        src="/assets\images\logo_mini_white.png" alt="logo"> -->
+                        src="<?= $baseUrl ?>/assets\images\logo_mini_white.png" alt="logo">
 
                 </div>
                 <!--logo End-->
@@ -165,7 +173,7 @@ $baseUrl = '/Novelnest';
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="#">
+                            href="<?= $baseUrl ?>/view/genre/genre-list.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Genres"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-squares-four"></i>
@@ -175,7 +183,6 @@ $baseUrl = '/Novelnest';
                             <span class="item-name">Genres</span>
                         </a>
                     </li>
-
                     <li class="nav-item iq-drop">
                         <a class="nav-link" data-bs-toggle="collapse" href="#user" role="button"
                             aria-expanded="false">
@@ -198,12 +205,12 @@ $baseUrl = '/Novelnest';
                                 <a
                                     class="nav-link "
                                     aria-current="page"
-                                    href="#">
+                                    href="<?= $baseUrl ?>/view/books/books-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="User List"
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>
                                     </i>
-                
+
                                     <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
                                         title="Book List"
                                         data-bs-placement="right">Bl</i>
@@ -214,7 +221,7 @@ $baseUrl = '/Novelnest';
                                 <a
                                     class="nav-link "
                                     aria-current="page"
-                                    href="#">
+                                    href="<?= $baseUrl ?>/view/pdfs/pdfs-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="Book PDF"
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-file-pdf"></i>
@@ -229,7 +236,7 @@ $baseUrl = '/Novelnest';
                                 <a
                                     class="nav-link "
                                     aria-current="page"
-                                    href="#">
+                                    href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="Audiobooks"
                                         data-bs-placement="right">
                                         <i class="fa fa-file-audio-o"></i>
@@ -242,8 +249,6 @@ $baseUrl = '/Novelnest';
                             </li>
                         </ul>
                     </li>
-
-
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
