@@ -127,11 +127,12 @@ $baseUrl = '/NovelNest';
                     <img class="logo-normal img-fluid "
                         src="<?= $baseUrl ?>/assets/images/logo.png" height="30" alt="logo" style="width: 200px; height: auto;">
                     <img class="logo-color img-fluid "
-                        src="<?= $baseUrl ?>/assets\images\logo-white.png" height="30" alt="logo">
+                        src="<?= $baseUrl ?>/assets/images/logo-white.png" height="30" alt="logo">
+
                     <!-- <img class="logo-mini img-fluid"
-                        src="<?= $baseUrl ?>/assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
+                        src="/assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
                     <img class="logo-mini-white img-fluid"
-                        src="<?= $baseUrl ?>/assets\images\logo_mini_white.png" alt="logo"> -->
+                        src="/assets\images\logo_mini_white.png" alt="logo"> -->
 
                 </div>
                 <!--logo End-->
@@ -236,7 +237,7 @@ $baseUrl = '/NovelNest';
                                 <a
                                     class="nav-link "
                                     aria-current="page"
-                                    href="#">
+                                    href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="Audiobooks"
                                         data-bs-placement="right">
                                         <i class="fa fa-file-audio-o"></i>
@@ -252,7 +253,7 @@ $baseUrl = '/NovelNest';
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="#">
+                            href="<?= $baseUrl ?>/view/user/user-list.php">
                             <i class="icon" data-bs-toggle="tooltip" title="User"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-identification-badge"></i>
