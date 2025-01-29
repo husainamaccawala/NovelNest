@@ -128,11 +128,6 @@ $baseUrl = '/NovelNest';
                         src="<?= $baseUrl ?>/assets/images/logo.png" height="30" alt="logo" style="width: 200px; height: auto;">
                     <img class="logo-color img-fluid "
                         src="<?= $baseUrl ?>/assets/images/logo-white.png" height="30" alt="logo">
-                    <!-- <img class="logo-mini img-fluid"
-                        src="/assets\images\logo_mini.png" alt="logo" style="width: auto; height: auto;">
-                    <img class="logo-mini-white img-fluid"
-                        src="/assets\images\logo_mini_white.png" alt="logo"> -->
-
                 </div>
                 <!--logo End-->
             </a>
