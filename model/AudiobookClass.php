@@ -1,59 +1,81 @@
 <?php
 require_once __DIR__.'/../config/DB.php';
 
-class AudiobookClass
-{
+class Audiobook {
     private $db;
 
-    public function __construct()
-    {
-        $this->db = new DB();
-        $this->db = $this->db->connect();
+    public function __construct() {
+        $db = new DB();
+        $this->db = $db->connection();
     }
 
-    public function createAudiobook($book, $narrator, $duration, $language, $audiobook)
-    {
-        $sql = "INSERT INTO audiobooks (book, narrator, duration, language, audiobook) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $this->db->prepare($sql);
-        
-        if (!$stmt) {
-            // Log the error and return false
-            error_log("Prepare failed: " . $this->db->error);
+    public function getAllAudiobooks() {
+        $query = "SELECT a.*, b.title AS book_name 
+                 FROM audiobooks a 
+                 LEFT JOIN books b ON a.book_id = b.id";
+        $result = $this->db->query($query);
+        if (!$result) {
             return false;
         }
-        
-        $stmt->bind_param("sssss", $book, $narrator, $duration, $language, $audiobook);
-        return $stmt->execute();
-    }
-
-    public function readAudiobooks()
-    {
-        $sql = "SELECT * FROM audiobook";
-        $result = $this->db->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function readAudiobooksById($id)
-    {
-        $sql = "SELECT * FROM audiobook WHERE id = ?";
-        $stmt = $this->db->prepare($sql);
+    public function getAudiobookById($id) {
+        $query = "SELECT a.*, b.title AS book_name 
+                 FROM audiobooks a 
+                 LEFT JOIN books b ON a.book_id = b.id 
+                 WHERE a.id = ?";
+        $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
-    public function updateAudiobook($id, $book, $narrator, $duration, $language, $audiobook)
-    {
-        $sql = "UPDATE audiobook SET book=?, narrator=?, duration=?, language=?, audiobook=? WHERE id=?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sssssdi", $book, $narrator, $duration, $language, $audiobook, $id);
+    public function addAudiobook($data) {
+        $query = "INSERT INTO audiobooks (book_id, description, narrator, file) 
+                 VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("isss", 
+            $data['book_id'],
+            $data['description'],
+            $data['narrator'],
+            $data['file']
+        );
         return $stmt->execute();
     }
 
-    public function deleteAudiobook($id)
-    {
-        $sql = "DELETE FROM audiobook WHERE id=?";
-        $stmt = $this->db->prepare($sql);
+    public function updateAudiobook($data) {
+        $query = "UPDATE audiobooks 
+                 SET book_id = ?, description = ?, narrator = ?" .
+                 ($data['file'] ? ", file = ?" : "") .
+                 " WHERE id = ?";
+        
+        $stmt = $this->db->prepare($query);
+        
+        if ($data['file']) {
+            $stmt->bind_param("isssi", 
+                $data['book_id'],
+                $data['description'],
+                $data['narrator'],
+                $data['file'],
+                $data['id']
+            );
+        } else {
+            $stmt->bind_param("issi", 
+                $data['book_id'],
+                $data['description'],
+                $data['narrator'],
+                $data['id']
+            );
+        }
+        
+        return $stmt->execute();
+    }
+
+    public function deleteAudiobook($id) {
+        $query = "DELETE FROM audiobooks WHERE id = ?";
+        $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }

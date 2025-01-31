@@ -95,8 +95,11 @@ $(document).ready(function () {
                 method: 'POST',
                 data: { action: 'delete', id: userId },
                 success: function (response) {
-                    alert('User deleted successfully!');
+                    toastr.success('User deleted successfully!');
                     fetchUsers(); // Refresh the user list
+                },
+                error: function(xhr, status, error) {
+                    toastr.error('Error deleting user. Please try again.');
                 }
             });
         }
@@ -122,13 +125,14 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                alert('User ' + ($('#action').val() === 'create' ? 'created' : 'updated') + ' successfully!');
+                const action = $('#action').val() === 'create' ? 'created' : 'updated';
+                toastr.success(`User ${action} successfully!`);
                 $('#userModal').modal('hide');
                 fetchUsers(); // Refresh the user list
             },
             error: function(xhr, status, error) {
                 console.error("Form submission error:", error);
-                alert('Error saving user data. Please try again.');
+                toastr.error('Error saving user data. Please try again.');
             }
         });
     });

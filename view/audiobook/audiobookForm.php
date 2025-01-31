@@ -11,8 +11,16 @@
           <input type="hidden" id="audiobookId" name="id">
           <!-- Book Title Field -->
           <div class="form-group mb-3">
-            <label for="book" class="form-label">Book Title</label>
-            <input type="text" class="form-control" id="book" name="book" placeholder="Enter book title" required>
+            <label for="book_id" class="form-label">Book</label>
+            <select class="form-select" id="book_id" name="book_id" required>
+              <option value="">Select Book</option>
+            </select>
+          </div>
+
+          <!--description-->
+          <div class="form-group mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Enter Description" required></textarea>
           </div>
 
           <!-- Narrator Field -->
@@ -21,28 +29,10 @@
             <input type="text" class="form-control" id="narrator" name="narrator" placeholder="Enter narrator name" required>
           </div>
 
-          <!-- Duration Field -->
-          <div class="form-group mb-3">
-            <label for="duration" class="form-label">Duration</label>
-            <input type="time" class="form-control" id="duration" name="duration" step="1" required>
-          </div>
-
-          <!-- Language Field -->
-          <div class="form-group mb-3">
-            <label for="language" class="form-label">Language</label>
-            <select class="form-control" id="language" name="language" required>
-              <option value="">Select Language</option>
-              <option value="English">English</option>
-              <option value="Spanish">Spanish</option>
-              <option value="French">French</option>
-              <option value="German">German</option>
-            </select>
-          </div>
-
           <!-- Audiobook File Upload Field -->
           <div class="form-group mb-3">
-            <label for="audiobookFile" class="form-label">Audiobook File</label>
-            <input type="file" class="form-control" id="audiobookFile" name="audiobookFile" accept="audio/*">
+            <label for="audio_file" class="form-label">Audiobook File</label>
+            <input type="file" class="form-control" id="audio_file" name="audio_file" accept="audio/*" required>
           </div>
 
           <!-- Submit and Cancel Buttons -->
@@ -55,3 +45,5 @@
     </div>
   </div>
 </div>
+
+<script src="<?php echo $baseUrl; ?>/assets/js/ajax/audiobook.js"></script>

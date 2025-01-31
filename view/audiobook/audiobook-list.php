@@ -25,9 +25,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/audiobook/audiobookFo
                                     <tr class="bg-white">
                                         <th scope="col" class="border-bottom bg-primary text-white">Srno.</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Book</th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Description</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Narrator </th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Duration</th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Language</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Audiobook</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Action</th>
                                     </tr>

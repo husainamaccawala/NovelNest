@@ -21,10 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $genre_id = $_POST['genre_id'] ?? '';
         $author = $_POST['author'] ?? '';
         $description = $_POST['description'] ?? '';
-        $published_date = $_POST['published_date'] ?? '';
 
-        if (!empty($cover_image) && !empty($title) && !empty($genre_id) && !empty($author) && !empty($description) && !empty($published_date)) {
-            $result = $BooksClass->addBook($cover_image, $title, $genre_id, $author, $description, $published_date);
+        if (!empty($cover_image) && !empty($title) && !empty($genre_id) && !empty($author) && !empty($description)) {
+            $result = $BooksClass->addBook($cover_image, $title, $genre_id, $author, $description);
 
             if ($result) {
                 echo json_encode(["status" => "success", "message" => "Book added successfully!"]);

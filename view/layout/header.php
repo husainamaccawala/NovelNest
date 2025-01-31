@@ -201,7 +201,7 @@ $baseUrl = '/NovelNest';
                                     class="nav-link "
                                     aria-current="page"
                                     href="<?= $baseUrl ?>/view/books/books-list.php">
-                                    <i class="icon" data-bs-toggle="tooltip" title="User List"
+                                    <i class="icon" data-bs-toggle="tooltip" title="Book List"
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>
                                     </i>

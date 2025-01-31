@@ -42,17 +42,30 @@ $(document).ready(function () {
                     if (data.status === 'success' && Array.isArray(data.data)) {
                         let tableBody = '';
                         data.data.forEach((book, index) => {
-                            const coverImage = book.cover_image && book.cover_image !== '/'
-                                ? `${baseUrl}${book.cover_image}`
-                                : `${baseUrl}/assets/images/default-book-cover.jpg`;
+                            let coverImage;
+                            if (!book.cover_image || book.cover_image === '/') {
+                                coverImage = `${baseUrl}/assets/images/default-book-cover.jpg`;
+                            } else {
+                                // Simple path cleaning
+                                let cleanPath = book.cover_image;
+                                if (cleanPath.includes('/NovelNest/')) {
+                                    cleanPath = cleanPath.split('/NovelNest/').pop();
+                                }
+                                if (!cleanPath.startsWith('assets/')) {
+                                    cleanPath = 'assets/images/book-cover/' + cleanPath;
+                                }
+                                coverImage = `${baseUrl}/${cleanPath}`;
+                            }
 
+                            // console.log(`Clean Image URL for ${book.title}: ${coverImage}`); // Debugging line
+    
                             tableBody += `
                                 <tr>
                                     <td>${index + 1}</td>
                                     <td>
-                                        <img src="${coverImage}" 
-                                             alt="${book.title}" 
-                                             class="book-cover-thumb" 
+                                        <img src="${coverImage}"
+                                             alt="${book.title}"
+                                             class="book-cover-thumb"
                                              style="width: 50px; height: 70px; object-fit: cover;">
                                     </td>
                                     <td>${book.title}</td>
@@ -85,6 +98,7 @@ $(document).ready(function () {
             }
         });
     }
+    
 
     // Function to reset modal
     function resetModal() {
@@ -108,6 +122,17 @@ $(document).ready(function () {
             reader.readAsDataURL(file);
         }
     });
+
+    // Function to preview uploaded image
+    function previewPhoto(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('photo-preview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
 
     // Add/Update book handler
     $(document).on('click', '#btn', function (e) {
@@ -178,7 +203,7 @@ $(document).ready(function () {
     // Edit button handler
     $(document).on('click', '.edit-btn', function () {
         const bookId = $(this).data('id');
-
+    
         $.ajax({
             url: `${baseUrl}/controller/booksController.php`,
             method: 'GET',
@@ -191,27 +216,40 @@ $(document).ready(function () {
                     const data = JSON.parse(response);
                     if (data.status === 'success' && data.data) {
                         const book = data.data;
-
+    
                         // Populate form fields
                         $('#book_name').val(book.title);
                         $('#author').val(book.author);
                         $('#genres').val(book.genre_id);
                         $('#description').val(book.description);
-
+    
                         // Set the preview image
-                        const coverImage = book.cover_image && book.cover_image !== '/'
-                            ? `${baseUrl}${book.cover_image}`
-                            : `${baseUrl}/assets/images/default-book-cover.jpg`;
-
+                        let coverImage;
+                        if (!book.cover_image || book.cover_image === '/') {
+                            coverImage = `${baseUrl}/assets/images/default-book-cover.jpg`;
+                        } else {
+                            // Simple path cleaning
+                            let cleanPath = book.cover_image;
+                            if (cleanPath.includes('/NovelNest/')) {
+                                cleanPath = cleanPath.split('/NovelNest/').pop();
+                            }
+                            if (!cleanPath.startsWith('assets/')) {
+                                cleanPath = 'assets/images/book-cover/' + cleanPath;
+                            }
+                            coverImage = `${baseUrl}/${cleanPath}`;
+                        }
+    
+                        console.log(`Edit Image URL for ${book.title}: ${coverImage}`); // Debugging line
+    
                         $('#previewImage')
                             .attr('src', coverImage)
                             .css({ 'width': '100px', 'height': '150px', 'object-fit': 'cover' })
                             .show();
-
+    
                         // Store the current cover image path
                         $('#btn').data('current-cover', book.cover_image);
                         $('#btn').data('edit-id', bookId);
-
+    
                         // Show the modal
                         $('#addBooksModal').modal('show');
                     } else {
@@ -228,6 +266,7 @@ $(document).ready(function () {
             }
         });
     });
+    
 
     // Delete button handler
     $(document).on('click', '.delete-btn', function () {

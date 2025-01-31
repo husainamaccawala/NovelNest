@@ -1,24 +1,21 @@
 <?php
-
-class DB 
+class DB
 {
     private $host = "localhost";
     private $user = "root";
     private $password = "";
     private $database = "novelnest";
-    public $con;
-    
-    function connect()
+    private $conn;
+
+
+
+    public function connection()
     {
-        $this->con = new mysqli($this->host,$this->user,$this->password,$this->database);
+        $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database);
 
-        if($this->con->connect_error)
-        {
-            die("Database is not connected");
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
         }
-        return $this->con;
+        return $this->conn;
     }
-
-} 
-
-?>
+}

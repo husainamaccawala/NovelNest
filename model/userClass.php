@@ -8,7 +8,7 @@ class UserClass
     public function __construct()
     {
         $this->db = new DB();
-        $this->db = $this->db->connect();
+        $this->db = $this->db->connection();
     }
 
     public function createUser($data)
