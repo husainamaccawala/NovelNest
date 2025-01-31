@@ -13,16 +13,16 @@ class BooksClass
     }
 
     // Add a new book
-    public function addBook($cover_image, $title, $genre_id, $author, $description, $published_date)
+    public function addBook($cover_image, $title, $genre_id, $author, $description )
     {
-        $sql = "INSERT INTO books (cover_image, title, genre_id, author, description, published_date) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO books (cover_image, title, genre_id, author, description) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt) {
             die("Prepare failed: " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssisss", $cover_image, $title, $genre_id,  $author, $description, $published_date);
+        $stmt->bind_param("ssiss", $cover_image, $title, $genre_id,  $author, $description);
         $exe_result = $stmt->execute();
 
         if (!$exe_result) {
@@ -109,8 +109,7 @@ class BooksClass
                 books.title, 
                 genre.name AS genre_name, 
                 books.author, 
-                books.description,
-                books.published_date 
+                books.description
             FROM books 
             JOIN genre ON books.genre_id = genre.id";
         $result = $this->conn->query($sql);
