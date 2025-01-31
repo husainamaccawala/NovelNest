@@ -4,6 +4,9 @@ require_once __DIR__.'/../model/AudiobookClass.php';
 $baseUrl = '/NovelNest';
 $AudiobookClass = new Audiobook();
 
+// Define upload directory constant
+$UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/audiobooks/';
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
         $action = $_POST['action'] ?? '';
@@ -20,13 +23,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
 
                 // Create upload directory if it doesn't exist
-                $uploadDir = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/audiobooks/';
-                if (!file_exists($uploadDir)) {
-                    mkdir($uploadDir, 0777, true);
+                if (!file_exists($UPLOAD_DIR)) {
+                    mkdir($UPLOAD_DIR, 0777, true);
                 }
 
                 $fileName = time() . '_' . basename($audioFile['name']);
-                $uploadPath = $uploadDir . $fileName;
+                $uploadPath = $UPLOAD_DIR . $fileName;
                 
                 if (!move_uploaded_file($audioFile['tmp_name'], $uploadPath)) {
                     error_log("Failed to move file from {$audioFile['tmp_name']} to {$uploadPath}");
@@ -69,9 +71,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 ];
 
                 if (isset($_FILES['audio_file']) && $_FILES['audio_file']['error'] === UPLOAD_ERR_OK) {
-                    $uploadDir = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/audiobooks';
                     $fileName = time() . '_' . basename($_FILES['audio_file']['name']);
-                    $uploadPath = $uploadDir . $fileName;
+                    $uploadPath = $UPLOAD_DIR . $fileName;
                     
                     if (move_uploaded_file($_FILES['audio_file']['tmp_name'], $uploadPath)) {
                         $data['file'] = $fileName;
