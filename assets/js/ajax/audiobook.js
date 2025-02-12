@@ -44,8 +44,8 @@ $(document).ready(function () {
                         let tableBody = '';
                         data.data.forEach((audiobook, index) => {
                             const timestamp = new Date().getTime();
-                            tableBody += `
-                                <tr>
+                            tableBody +=
+                                `<tr>
                                     <td>${index + 1}</td>
                                     <td>${audiobook.book_name}</td>
                                     <td>${audiobook.description}</td>
@@ -64,8 +64,7 @@ $(document).ready(function () {
                                             Delete
                                         </button>
                                     </td>
-                                </tr>
-                            `;
+                                </tr>`;
                         });
                         $('#user-table tbody').html(tableBody);
 
@@ -104,19 +103,6 @@ $(document).ready(function () {
 
         if (!isValid) return;
 
-        // File validation
-        const fileInput = $('#audio_file')[0];
-        if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-            toastr.error('Please select an audio file');
-            return;
-        }
-
-        const audioFile = fileInput.files[0];
-        if (!audioFile.type.startsWith('audio/')) {
-            toastr.error('Please select a valid audio file');
-            return;
-        }
-
         const formData = new FormData(this);
         const id = $('#audiobookId').val();
 
@@ -124,10 +110,17 @@ $(document).ready(function () {
         formData.append('action', id ? 'update' : 'add');
         if (id) formData.append('id', id);
 
-        // Debug: Log form data
-        console.log('Form Data:');
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+        // Check if a new file is being uploaded
+        const fileInput = $('#audio_file')[0];
+        if (fileInput.files.length > 0) {
+            const audioFile = fileInput.files[0];
+            if (!audioFile.type.startsWith('audio/')) {
+                toastr.error('Please select a valid audio file');
+                return;
+            }
+        } else {
+            // Append existing file name if no new file is uploaded
+            formData.append('existing_file', $('#existing_audio_file').val());
         }
 
         $.ajax({
@@ -165,10 +158,10 @@ $(document).ready(function () {
 
     // Edit button handler
     $(document).on('click', '.edit-btn', function () {
-        // Clear previous state first
         $('#audiobookForm')[0].reset();
         $('#audiobookId').val('');
-        $('.text-info, #audiobookModal audio').remove();
+        $('#existing_audio_file').val('');
+        $('#audio_file').siblings('.text-info').remove();
 
         const id = $(this).data('id');
         $.ajax({
@@ -184,31 +177,19 @@ $(document).ready(function () {
                         $('#book_id').val(audiobook.book_id);
                         $('#description').val(audiobook.description);
                         $('#narrator').val(audiobook.narrator);
+                        $('#existing_audio_file').val(audiobook.file || '');
 
-                        // Add current audio file information and preview
+                        // Show current file info if available
                         if (audiobook.file) {
-                            const audioFileInfo = $('<div>', {
-                                class: 'text-info mt-2'
-                            }).append(
-                                $('<p>', {
-                                    text: `Current audio file: ${audiobook.file}`
-                                }),
-                                $('<audio>', {
-                                    controls: true,
-                                    preload: 'none',
-                                    class: 'mt-2 mb-2'
-                                }).append(
-                                    $('<source>', {
-                                        src: `${baseUrl}/assets/audiobooks/${audiobook.file}`,
-                                        type: 'audio/mpeg'
-                                    })
-                                ),
-                                $('<p>', {
-                                    class: 'small',
-                                    text: 'Upload a new file only if you want to replace the current audio'
-                                })
-                            );
-                            $('#audio_file').after(audioFileInfo);
+                            $('#audio_file').after(`
+                                <div class="text-info mt-2">
+                                    <p>Current audio file: ${audiobook.file}</p>
+                                    <audio controls class="mt-2 mb-2">
+                                        <source src="${baseUrl}/assets/audiobooks/${audiobook.file}" type="audio/mpeg">
+                                    </audio>
+                                    <p class="small">Upload a new file only if you want to replace the current audio</p>
+                                </div>
+                            `);
                         }
 
                         $('#audiobookModal').modal('show');
@@ -234,46 +215,20 @@ $(document).ready(function () {
             $.ajax({
                 url: `${baseUrl}/controller/audiobookController.php`,
                 method: 'POST',
-                data: {
-                    action: 'delete',
-                    id: id
-                },
+                data: { action: 'delete', id },
                 success: function (response) {
-                    try {
-                        const data = JSON.parse(response);
-                        toastr[data.status](data.message);
-                        if (data.status === 'success') {
-                            loadAudiobooks();
-                        }
-                    } catch (e) {
-                        console.error('Error parsing delete response:', e);
-                        toastr.error('Error processing delete response');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Delete error:', error);
-                    toastr.error('Error deleting audiobook');
+                    const data = JSON.parse(response);
+                    toastr[data.status](data.message);
+                    if (data.status === 'success') loadAudiobooks();
                 }
             });
         }
     });
 
-    // Add a handler for the Add Audiobook button
-    $(document).on('click', '#addAudiobookBtn', function () {
-        // Clear the form completely
-        $('#audiobookForm')[0].reset();
-        $('#audiobookId').val('');
-        // Remove any existing audio preview and file info
-        $('.text-info, #audiobookModal audio').remove();
-        // Show the modal
-        $('#audiobookModal').modal('show');
-    });
-
-    // Modify modal hidden handler to ensure clean state
     $('#audiobookModal').on('hidden.bs.modal', function () {
         $('#audiobookForm')[0].reset();
         $('#audiobookId').val('');
-        $('.text-info, #audiobookModal audio').remove();
+        $('#audio_file').siblings('.text-info').remove();
     });
 
     // Initialize page
