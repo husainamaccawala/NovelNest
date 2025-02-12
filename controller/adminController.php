@@ -7,7 +7,7 @@ class AdminController {
     private $adminModel;
 
     public function __construct($db) {
-        $this->adminModel = new Admin($db);
+        $this->adminModel = new Admin();
     }
 
     public function adminLogin($fullname, $password) {

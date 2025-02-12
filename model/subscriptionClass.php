@@ -1,11 +1,10 @@
 <?php
-class SubscriptionClass
-{
-    private $db;
+class SubscriptionClass {
+    private $conn;
 
-    public function __construct($db)
-    {
-        $this->db = $db;
+    public function __construct() {
+        $db = new DB();
+        $this->conn = $db->connection();
     }
 
     public function getAllUserSubscriptions() {
@@ -28,34 +27,36 @@ class SubscriptionClass
                   INNER JOIN 
                       plans p 
                       ON s.plan_id = p.id";
-    
-        $result = $this->db->query($query);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+
+        $result = $this->conn->query($query);
+
+        if ($result->num_rows > 0) {
+            $subscriptions = [];
+            while ($row = $result->fetch_assoc()) {
+                $subscriptions[] = $row;
+            }
+            return $subscriptions;
+        } else {
+            return [];
+        }
     }
 
-    public function updateUserSubscription($userId, $subscriptionType)
-    {
+    public function updateUserSubscription($userId, $subscriptionType) {
         $startDate = date("Y-m-d");
         $endDate = date("Y-m-d", strtotime("+1 month"));
 
-        $query = "
-            UPDATE subscriptions
-            SET 
-                subscription_type = :subscription_type, 
-                subscription_start_date = :start_date, 
-                subscription_end_date = :end_date
-            WHERE user_id = :user_id
-        ";
+        $query = "UPDATE subscriptions 
+                  SET subscription_type = ?, 
+                      start_date = ?, 
+                      end_date = ? 
+                  WHERE user_id = ?";
 
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':subscription_type', $subscriptionType);
-            $stmt->bindParam(':start_date', $startDate);
-            $stmt->bindParam(':end_date', $endDate);
-            $stmt->bindParam(':user_id', $userId);
+        $stmt = $this->conn->prepare($query);
+        if ($stmt) {
+            $stmt->bind_param("sssi", $subscriptionType, $startDate, $endDate, $userId);
             return $stmt->execute();
-        } catch (PDOException $e) {
-            error_log("Error updating subscription: " . $e->getMessage());
+        } else {
+            error_log("Error preparing statement: " . $this->conn->error);
             return false;
         }
     }

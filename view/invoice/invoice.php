@@ -13,7 +13,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../controller/invoiceController.php';
 
-$controller = new InvoiceController($db);
+$controller = new InvoiceController();
 $userInvoices = $controller->invoiceModel->getAllInvoices();
 
 require_once __DIR__ . '/../../view/layout/header.php';
