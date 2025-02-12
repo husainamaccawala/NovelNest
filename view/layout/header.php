@@ -285,7 +285,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="#">
+                            href="/novelnest/view/invoice/invoice.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Invoices"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-chat-centered"></i>

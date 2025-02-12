@@ -49,4 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     // Pass the posted data to the controller method
     $controller->adminLogin(trim($_POST['fullname']), trim($_POST['password']));
 }
+
+
 ?>

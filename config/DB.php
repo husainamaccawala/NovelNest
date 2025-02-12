@@ -16,5 +16,9 @@ class DB {
         }
         return $this->conn;
     }
+    
 }
+// config.php
+define('BASE_URL', 'http://localhost/NovelNest/');
+
 ?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 
 // Check if the admin is logged in
 if (session_status() === PHP_SESSION_NONE) {
@@ -7,13 +7,16 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Check if admin session variables exist
-$adminName = $_SESSION['admin_name'];
-$adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg';
+$adminName = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin';
+$adminProfileImage = isset($_SESSION['admin_profile_image']) && $_SESSION['admin_profile_image'] !== '' 
+                     ? $_SESSION['admin_profile_image'] 
+                     : '/assets/images/default-profile.png';
 // Default image if none set
 
 // Include necessary files
 require_once __DIR__ . "/../../config/db.php";
 require_once __DIR__ . "/../../controller/subscriptionController.php";
+
 
 // Create SubscriptionController object
 $controller = new SubscriptionController($db);
@@ -51,6 +54,7 @@ require_once __DIR__ . "/../../view/layout/header.php";
             background-color: #f9f9f9;
         }
     </style>
+    <script src="../../assets/js/ajax/subscription.js"></script>  
 </head>
 
 <body>
@@ -60,10 +64,23 @@ require_once __DIR__ . "/../../view/layout/header.php";
         <h6 class="mb-0 line-height"><?= htmlspecialchars($adminName); ?></h6>
     </div> -->
 
-    <h2>User Subscription Details</h2>
+    <!-- <h2>User Subscription Details</h2> -->
 
-    <table>
-        <thead>
+    <div class="content-inner container-fluid pb-0" id="page_layout">
+    <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">Subscription List</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="custom-table-effect table-responsive custom-table-search user-table">
+                            <table class="mb-0 table table-bordered" id="user-table" data-toggle="data-table1">
+                                <thead class="">
+
             <tr class="bg-white">
                 <th scope="col" class="border-bottom bg-primary text-white">User Name</th>
                 <th scope="col" class="border-bottom bg-primary text-white">Email</th>
@@ -96,8 +113,15 @@ require_once __DIR__ . "/../../view/layout/header.php";
                     <td colspan="9">No subscriptions found.</td>
                 </tr>
             <?php endif; ?>
-        </tbody>
-    </table>
+            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
@@ -106,6 +130,3 @@ require_once __DIR__ . "/../../view/layout/header.php";
 // Include the footer
 require_once __DIR__ . "/../../view/layout/footer.php";
 ?>
-
-
-

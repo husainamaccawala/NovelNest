@@ -23,7 +23,7 @@ class SubscriptionClass
                   FROM 
                       subscriptions s
                   INNER JOIN 
-                      users u 
+                      user u 
                       ON s.user_id = u.id
                   INNER JOIN 
                       plans p 
