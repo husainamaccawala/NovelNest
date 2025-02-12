@@ -115,22 +115,22 @@ $baseUrl = '/NovelNest';
 
 
 <!--morris chart -->
-<!-- <script src="../../../cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-<script src="../../../cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
+<script src="../../../cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+<script src="../../../cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
 
 
 <!--highcharts chart -->
-<!-- <script src="../../../code.highcharts.com/highcharts.html"></script>
+<script src="../../../code.highcharts.com/highcharts.html"></script>
 <script src="../../../code.highcharts.com/highcharts-more.html"></script>
-<script src="../../../code.highcharts.com/modules/exporting.html"></script> -->
+<script src="../../../code.highcharts.com/modules/exporting.html"></script>
 
 
 
 <!--Am chart -->
-<!-- <script src="../../../cdn.amcharts.com/lib/4/core.js"></script>
+<script src="../../../cdn.amcharts.com/lib/4/core.js"></script>
 <script src="../../../cdn.amcharts.com/lib/4/charts.js"></script>
-<script src="../../../cdn.amcharts.com/lib/4/themes/animated.js"></script> -->
+<script src="../../../cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
 <!--Widget Chart -->
 
@@ -139,9 +139,7 @@ $baseUrl = '/NovelNest';
 <!-- Toastr Config -->
 <script src="<?= $baseUrl ?>/assets/js/toastr-config.js"></script> <!-- Assuming this is your custom config file -->
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+<script src="../../assets/js/ajax/admin.js"></script>
 
 </body>
 
