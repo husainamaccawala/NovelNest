@@ -140,6 +140,7 @@ $baseUrl = '/NovelNest';
 <script src="<?= $baseUrl ?>/assets/js/toastr-config.js"></script> <!-- Assuming this is your custom config file -->
 
 <script src="../../assets/js/ajax/admin.js"></script>
+
 </body>
 
 

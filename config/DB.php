@@ -1,24 +1,22 @@
 <?php
-class DB {
+class DB
+{
     private $host = "localhost";
-    private $db_name = "novelnest";
-    private $username = "root";
+    private $user = "root";
     private $password = "";
-    public $conn;
+    private $database = "novelnest";
+    private $conn;
 
-    public function Connection() {
-        $this->conn = null;
-        try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $exception) {
-            echo "Connection error: " . $exception->getMessage();
+
+
+    public function connection()
+    {
+        $this->conn = new mysqli($this->host, $this->user, $this->password, $this->database);
+
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
         }
         return $this->conn;
     }
-    
 }
-// config.php
-define('BASE_URL', 'http://localhost/NovelNest/');
 
-?>
