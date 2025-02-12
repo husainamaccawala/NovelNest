@@ -9,7 +9,7 @@ class SubscriptionController {
 
     public function __construct($db) {
         $this->db = $db;
-        $this->subscriptionModel = new SubscriptionClass($db);
+        $this->subscriptionModel = new SubscriptionClass();
     }
 
     public function handleSubscriptionPage() {
