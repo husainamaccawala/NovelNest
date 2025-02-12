@@ -14,6 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Handle admin name and profile image
 $adminName = $_SESSION['admin_name'];
 $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg';
+
 ?>
 
 <head>
@@ -389,9 +390,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                     id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
-                                            <img src="<?php echo htmlspecialchars($adminProfileImage); ?>"
-                                                class="img-fluid rounded-circle object-fit-cover avatar-50"
-                                                alt="Admin Profile">
+                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
                                             <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
                                         </span>
                                     </div>

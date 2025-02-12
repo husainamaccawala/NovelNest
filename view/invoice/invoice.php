@@ -5,6 +5,10 @@ if (!isset($_SESSION['admin_id'])) {
     header('Location: /NovelNest/view/admin/adminSigninForm.php');
     exit();
 }
+$baseUrl = '/novelnest';
+
+$adminName = $_SESSION['admin_name'];
+$adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg'; 
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../controller/invoiceController.php';
@@ -14,6 +18,8 @@ $userInvoices = $controller->invoiceModel->getAllInvoices();
 
 require_once __DIR__ . '/../../view/layout/header.php';
 ?>
+<!-- This is correct, no need to echo the path outside the image tag -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +29,7 @@ require_once __DIR__ . '/../../view/layout/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoices</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    
     <style>
         table {
             width: 100%;
@@ -46,7 +53,6 @@ require_once __DIR__ . '/../../view/layout/header.php';
     </style>
 </head>
 
-<body>
     <div class="content-inner container-fluid pb-0" id="page_layout">
         <div>
             <div class="row">
