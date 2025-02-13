@@ -19,3 +19,5 @@ class DB
         return $this->conn;
     }
 }
+$dbInstance = new DB();
+$conn = $dbInstance->connection(); 
