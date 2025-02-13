@@ -36,21 +36,23 @@ $(document).ready(function () {
         $.ajax({
             url: `${baseUrl}/controller/audiobookController.php`,
             method: 'GET',
+            data: { action: 'list' },
             success: function (response) {
                 try {
                     const data = JSON.parse(response);
                     if (data.status === 'success' && Array.isArray(data.data)) {
                         let tableBody = '';
                         data.data.forEach((audiobook, index) => {
-                            tableBody += `
-                                <tr>
+                            const timestamp = new Date().getTime();
+                            tableBody +=
+                                `<tr>
                                     <td>${index + 1}</td>
                                     <td>${audiobook.book_name}</td>
                                     <td>${audiobook.description}</td>
                                     <td>${audiobook.narrator}</td>
                                     <td>
-                                        <audio controls preload="none">
-                                            <source src="${baseUrl}/assets/audiobooks/${audiobook.file}" type="audio/mpeg">
+                                        <audio controls preload="none" class="audiobook-player">
+                                            <source src="${baseUrl}/assets/audiobooks/${audiobook.file}?t=${timestamp}" type="audio/mpeg">
                                             Your browser does not support the audio element.
                                         </audio>
                                     </td>
@@ -62,15 +64,13 @@ $(document).ready(function () {
                                             Delete
                                         </button>
                                     </td>
-                                </tr>
-                            `;
+                                </tr>`;
                         });
                         $('#user-table tbody').html(tableBody);
-                        
-                        // Debug: Log the first audio source
-                        if (data.data.length > 0) {
-                            console.log('First audio source:', `${baseUrl}/assets/audiobooks/${data.data[0].file}`);
-                        }
+
+                        $('.audiobook-player').each(function () {
+                            this.load();
+                        });
                     } else {
                         toastr.error('Failed to load audiobooks');
                     }
@@ -89,44 +89,38 @@ $(document).ready(function () {
     // Handle form submission (Add/Update)
     $('#audiobookForm').submit(function (e) {
         e.preventDefault();
-        
+
         // Basic validation
         const requiredFields = ['book_id', 'description', 'narrator'];
         let isValid = true;
-        
+
         requiredFields.forEach(field => {
             if (!$(`#${field}`).val()) {
                 toastr.error(`${field.replace('_', ' ')} is required`);
                 isValid = false;
             }
         });
-        
+
         if (!isValid) return;
-
-        // File validation
-        const fileInput = $('#audio_file')[0];
-        if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-            toastr.error('Please select an audio file');
-            return;
-        }
-
-        const audioFile = fileInput.files[0];
-        if (!audioFile.type.startsWith('audio/')) {
-            toastr.error('Please select a valid audio file');
-            return;
-        }
 
         const formData = new FormData(this);
         const id = $('#audiobookId').val();
-        
+
         // Add action type
         formData.append('action', id ? 'update' : 'add');
         if (id) formData.append('id', id);
 
-        // Debug: Log form data
-        console.log('Form Data:');
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+        // Check if a new file is being uploaded
+        const fileInput = $('#audio_file')[0];
+        if (fileInput.files.length > 0) {
+            const audioFile = fileInput.files[0];
+            if (!audioFile.type.startsWith('audio/')) {
+                toastr.error('Please select a valid audio file');
+                return;
+            }
+        } else {
+            // Append existing file name if no new file is uploaded
+            formData.append('existing_file', $('#existing_audio_file').val());
         }
 
         $.ajax({
@@ -136,14 +130,17 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log('Raw response:', response);
                 try {
                     const data = JSON.parse(response);
                     if (data.status === 'success') {
                         toastr.success(data.message);
                         $('#audiobookModal').modal('hide');
                         $('#audiobookForm')[0].reset();
-                        loadAudiobooks();
+                        $('#audiobookId').val('');
+
+                        setTimeout(() => {
+                            loadAudiobooks();
+                        }, 500);
                     } else {
                         toastr.error(data.message || 'Operation failed');
                     }
@@ -154,8 +151,6 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Submit error:', error);
-                console.error('Status:', status);
-                console.error('Response:', xhr.responseText);
                 toastr.error('Failed to process request');
             }
         });
@@ -163,11 +158,11 @@ $(document).ready(function () {
 
     // Edit button handler
     $(document).on('click', '.edit-btn', function () {
-        // Clear previous state first
         $('#audiobookForm')[0].reset();
         $('#audiobookId').val('');
-        $('.text-info, #audiobookModal audio').remove();
-        
+        $('#existing_audio_file').val('');
+        $('#audio_file').siblings('.text-info').remove();
+
         const id = $(this).data('id');
         $.ajax({
             url: `${baseUrl}/controller/audiobookController.php`,
@@ -182,6 +177,21 @@ $(document).ready(function () {
                         $('#book_id').val(audiobook.book_id);
                         $('#description').val(audiobook.description);
                         $('#narrator').val(audiobook.narrator);
+                        $('#existing_audio_file').val(audiobook.file || '');
+
+                        // Show current file info if available
+                        if (audiobook.file) {
+                            $('#audio_file').after(`
+                                <div class="text-info mt-2">
+                                    <p>Current audio file: ${audiobook.file}</p>
+                                    <audio controls class="mt-2 mb-2">
+                                        <source src="${baseUrl}/assets/audiobooks/${audiobook.file}" type="audio/mpeg">
+                                    </audio>
+                                    <p class="small">Upload a new file only if you want to replace the current audio</p>
+                                </div>
+                            `);
+                        }
+
                         $('#audiobookModal').modal('show');
                     } else {
                         toastr.error('Failed to load audiobook details');
@@ -205,46 +215,20 @@ $(document).ready(function () {
             $.ajax({
                 url: `${baseUrl}/controller/audiobookController.php`,
                 method: 'POST',
-                data: {
-                    action: 'delete',
-                    id: id
-                },
+                data: { action: 'delete', id },
                 success: function (response) {
-                    try {
-                        const data = JSON.parse(response);
-                        toastr[data.status](data.message);
-                        if (data.status === 'success') {
-                            loadAudiobooks();
-                        }
-                    } catch (e) {
-                        console.error('Error parsing delete response:', e);
-                        toastr.error('Error processing delete response');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Delete error:', error);
-                    toastr.error('Error deleting audiobook');
+                    const data = JSON.parse(response);
+                    toastr[data.status](data.message);
+                    if (data.status === 'success') loadAudiobooks();
                 }
             });
         }
     });
 
-    // Add a handler for the Add Audiobook button
-    $(document).on('click', '#addAudiobookBtn', function() {
-        // Clear the form completely
-        $('#audiobookForm')[0].reset();
-        $('#audiobookId').val('');
-        // Remove any existing audio preview and file info
-        $('.text-info, #audiobookModal audio').remove();
-        // Show the modal
-        $('#audiobookModal').modal('show');
-    });
-
-    // Modify modal hidden handler to ensure clean state
     $('#audiobookModal').on('hidden.bs.modal', function () {
         $('#audiobookForm')[0].reset();
         $('#audiobookId').val('');
-        $('.text-info, #audiobookModal audio').remove();
+        $('#audio_file').siblings('.text-info').remove();
     });
 
     // Initialize page

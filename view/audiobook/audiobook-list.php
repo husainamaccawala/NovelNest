@@ -20,7 +20,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/audiobook/audiobookFo
                     </div>
                     <div class="card-body">
                         <div class="custom-table-effect table-responsive custom-table-search user-table">
-                            <table class="mb-0 table table-bordered" id="user-table" data-toggle="data-table1" border="1">
+                            <table class="mb-0 table table-bordered" id="user-table" data-toggle="data-table" border="1">
                                 <thead class="">
                                     <tr class="bg-white">
                                         <th scope="col" class="border-bottom bg-primary text-white">Srno.</th>

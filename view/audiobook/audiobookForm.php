@@ -32,7 +32,7 @@
           <!-- Audiobook File Upload Field -->
           <div class="form-group mb-3">
             <label for="audio_file" class="form-label">Audiobook File</label>
-            <input type="file" class="form-control" id="audio_file" name="audio_file" accept="audio/*" required>
+            <input type="file" class="form-control" id="audio_file" name="audio_file" accept="audio/*">
           </div>
 
           <!-- Submit and Cancel Buttons -->
