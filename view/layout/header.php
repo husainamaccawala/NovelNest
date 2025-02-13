@@ -109,7 +109,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
     </link>
 
     <!-- Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
@@ -217,7 +217,6 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                     aria-current="page"
                                     href="<?= $baseUrl ?>/view/books/books-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="Book List"
-
 
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>

@@ -139,7 +139,12 @@ $baseUrl = '/NovelNest';
 <!-- Toastr Config -->
 <script src="<?= $baseUrl ?>/assets/js/toastr-config.js"></script> <!-- Assuming this is your custom config file -->
 
+
 <script src="../../assets/js/ajax/admin.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 
 </body>
