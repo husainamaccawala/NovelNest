@@ -13,7 +13,9 @@ class BooksClass
     }
 
     // Add a new book
+
     public function addBook($cover_image, $title, $genre_id, $author, $description )
+
     {
         $sql = "INSERT INTO books (cover_image, title, genre_id, author, description) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);

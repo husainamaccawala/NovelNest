@@ -7,6 +7,16 @@ $baseUrl = '/NovelNest';
 
 
 <!-- Mirrored from templates.iqonic.design/booksto-dist/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Dec 2024 11:46:07 GMT -->
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Handle admin name and profile image
+$adminName = $_SESSION['admin_name'];
+$adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg';
+
+?>
 
 <head>
     <meta charset="utf-8">
@@ -106,17 +116,20 @@ $baseUrl = '/NovelNest';
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
 </head>
 
 <body class="  ">
     <!-- loader Start -->
-    <!-- <div id="loading">
+
+    <div id="loading">
         <div class="loader simple-loader">
             <div class="loader-body">
                 <img src="<?= $baseUrl ?>/assets\images\pageload.gif" alt="loader" class="light-loader img-fluid " width="300">
             </div>
         </div>
-    </div> -->
+    </div>
+
     <!-- loader END -->
     <aside class="sidebar sidebar-base " id="first-tour" data-toggle="main-sidebar"
         data-sidebar="responsive">
@@ -128,7 +141,9 @@ $baseUrl = '/NovelNest';
                     <img class="logo-normal img-fluid "
                         src="<?= $baseUrl ?>/assets/images/logo.png" height="30" alt="logo" style="width: 200px; height: auto;">
                     <img class="logo-color img-fluid "
+
                         src="<?= $baseUrl ?>/assets/images/logo-white.png" height="30" alt="logo">
+
                 </div>
                 <!--logo End-->
             </a>
@@ -203,6 +218,7 @@ $baseUrl = '/NovelNest';
                                     aria-current="page"
                                     href="<?= $baseUrl ?>/view/books/books-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="Book List"
+
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>
                                     </i>
@@ -218,6 +234,8 @@ $baseUrl = '/NovelNest';
                                     class="nav-link "
                                     aria-current="page"
                                     href="<?= $baseUrl ?>/view/pdfs/pdfs-list.php">
+
+
                                     <i class="icon" data-bs-toggle="tooltip" title="Book PDF"
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-file-pdf"></i>
@@ -233,6 +251,7 @@ $baseUrl = '/NovelNest';
                                     class="nav-link "
                                     aria-current="page"
                                     href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
+
                                     <i class="icon" data-bs-toggle="tooltip" title="Audiobooks"
                                         data-bs-placement="right">
                                         <i class="fa fa-file-audio-o"></i>
@@ -261,7 +280,7 @@ $baseUrl = '/NovelNest';
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="#">
+                            href="/novelnest/view/subscription/subscription.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Subscription"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-tag"></i>
@@ -274,7 +293,7 @@ $baseUrl = '/NovelNest';
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="#">
+                            href="/novelnest/view/invoice/invoice.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Invoices"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-chat-centered"></i>
@@ -378,26 +397,26 @@ $baseUrl = '/NovelNest';
                                     id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
-                                            <img src="<?= $baseUrl ?>/assets/images/avatars/1.jpg"
-                                                class="img-fluid rounded-circle object-fit-cover avatar-50" alt="icon">
-                                            <span
-                                                class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
-                                        </span>
 
+                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
+                                            <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
+                                        </span>
                                     </div>
                                     <div class="d-none d-lg-block">
-                                        <h6 class="mb-0 line-height">Barry Tech</h6>
+                                        <h6 class="mb-0 line-height"><?php echo htmlspecialchars($adminName); ?></h6>
                                     </div>
+
                                 </a>
                                 <div class="p-0 sub-drop dropdown-menu dropdown-menu-end" aria-labelledby="notification-cart">
                                     <div class="m-0 card-shadow card">
                                         <div class="py-3 card-header rounded-top-3 bg-primary mb-0">
                                             <div class="header-title">
-                                                <h5 class="mb-0 text-white">Hello Barry Tech</h5>
+                                                <h5 class="mb-0 text-white"><?php echo htmlspecialchars($adminName); ?></h5>
                                                 <span class="text-white ">Available</span>
                                             </div>
                                         </div>
-                                        <div class="p-0 card-body ">
+
+                                        <!-- <div class="p-0 card-body ">
                                             <a class="iq-sub-card" href="user/user-profile.html">
                                                 <div class="d-flex align-items-center">
                                                     <div
@@ -448,17 +467,25 @@ $baseUrl = '/NovelNest';
                                                         <p class="mb-0 font-size-12">Control your privacy parameters.</p>
                                                     </div>
                                                 </div>
-                                            </a>
-                                            <div class=" p-3 d-flex justify-content-center align-items-center">
-                                                <a class="btn btn-primary d-flex align-items-center gap-1" href="auth/sign-in.html"
-                                                    role="button">Sign out <i class="ph ph-sign-out"></i></a>
-                                            </div>
+                                            </a> -->
+                                        <div class=" p-3 d-flex justify-content-center align-items-center">
+                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="/novelnest/logout.php"
+                                                role="button">Sign out <i class="ph ph-sign-out"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
                     </div>
+                    </li>
+                    </ul>
                 </div>
-            </nav> <!--Nav End-->
         </div>
+        </nav> <!--Nav End-->
+        </div>
+
+        <!-- <header>
+    <nav>
+        <a href="dashboard.php">Dashboard</a>
+        <a href="logout.php">Logout</a>
+    </nav>
+</header> -->
+
