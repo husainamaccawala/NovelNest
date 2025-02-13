@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $baseUrl = '/NovelNest';
 ?>
 <!doctype html>
@@ -109,13 +110,13 @@ $baseUrl = '/NovelNest';
 
 <body class="  ">
     <!-- loader Start -->
-    <div id="loading">
+    <!-- <div id="loading">
         <div class="loader simple-loader">
             <div class="loader-body">
                 <img src="<?= $baseUrl ?>/assets\images\pageload.gif" alt="loader" class="light-loader img-fluid " width="300">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- loader END -->
     <aside class="sidebar sidebar-base " id="first-tour" data-toggle="main-sidebar"
         data-sidebar="responsive">
@@ -155,7 +156,7 @@ $baseUrl = '/NovelNest';
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="<?= $baseUrl ?>/index.php">
+                            href="<?= $baseUrl ?>/admin_index.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Dashboard"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-gauge"></i>
