@@ -125,8 +125,7 @@ $baseUrl = '/NovelNest';
                   </a>
                 </div>
                 <h1 class="text-primary reset-pw fw-900 d-flex ms-1 justify-content-center">Sign In</h1>
-                <p class="text-center mb-4 auth-desc">Enter your email address and password to access admin
-                  panel.</p>
+                <p class="text-center mb-4 auth-desc">Enter your email address and password for access.</p>
                   <div id="message"></div>
                   <form id="admin-login-form">
                 <div class="mb-3">

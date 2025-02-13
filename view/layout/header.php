@@ -20,17 +20,27 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title data-setting="#" data-rightJoin="NovelNest: Online Reading Platform">NovelNest: Online Reading Platform</title>
-    <meta name="description"
-        content="Booksto is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
-    <meta name="keywords"
-        content="premium, admin, dashboard, template, bootstrap 5, clean ui, Booksto, admin dashboard,responsive dashboard, optimized dashboard,">
-    <meta name="author" content="Iqonic Design">
-    <meta name="DC.title" content="Booksto Book store management system">
+    <title>NovelNest: Online Reading Platform</title>
+    <meta name="description" content="NovelNest is the ultimate online reading platform where book lovers can explore, read, and discover thousands of free and premium novels, stories, and books from various genres. Join now!">
+    <meta name="keywords" content="NovelNest, online novels, free books, read books online, e-books, best novels, premium novels, digital library, book reading platform">
+    <meta name="author" content="NovelNest Team">
+    <meta name="DC.title" content="NovelNest - Online Reading Platform">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    <meta name="distribution" content="global">
+    <meta property="og:title" content="NovelNest: Read & Discover Books Online">
+    <meta property="og:description" content="Discover thousands of novels and books on NovelNest, the ultimate reading platform for book lovers.">
+    <meta property="og:url" content="https://www.novelnest.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.novelnest.com/images/novelnest-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NovelNest: Online Reading Platform">
+    <meta name="twitter:description" content="Read and discover the best novels online. Thousands of free and premium books available at NovelNest.">
+    <meta name="twitter:image" content="https://www.novelnest.com/images/novelnest-preview.jpg">
 
     <script>
         (function() {
-            const savedTheme = sessionStorage.getItem('booksto');
+            const savedTheme = sessionStorage.getItem('novelnest');
 
             if (savedTheme) {
                 const settings = JSON.parse(savedTheme);
@@ -39,6 +49,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
             }
         })();
     </script>
+
 
     <meta name="setting_options" content='{&quot;saveLocal&quot;:&quot;sessionStorage&quot;,&quot;storeKey&quot;:&quot;booksto&quot;,&quot;setting&quot;:{&quot;app_name&quot;:{&quot;value&quot;:&quot;Booksto&quot;},&quot;theme_scheme_direction&quot;:{&quot;value&quot;:&quot;ltr&quot;},&quot;theme_scheme&quot;:{&quot;value&quot;:&quot;light&quot;},&quot;theme_style_appearance&quot;:{&quot;value&quot;:[&quot;theme-default&quot;]},&quot;theme_color&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;theme_transition&quot;:{&quot;value&quot;:&quot;theme-with-animation&quot;},&quot;theme_font_size&quot;:{&quot;value&quot;:&quot;theme-fs-md&quot;},&quot;page_layout&quot;:{&quot;value&quot;:&quot;container-fluid&quot;},&quot;header_navbar&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;header_banner&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;sidebar_color&quot;:{&quot;value&quot;:&quot;sidebar-white&quot;},&quot;card_color&quot;:{&quot;value&quot;:&quot;card-default&quot;},&quot;sidebar_type&quot;:{&quot;value&quot;:[]},&quot;sidebar_menu_style&quot;:{&quot;value&quot;:&quot;text-hover&quot;},&quot;footer&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;body_font_family&quot;:{&quot;value&quot;:null},&quot;heading_font_family&quot;:{&quot;value&quot;:null}}}'>
     <!-- Google Font Api KEY-->
@@ -61,7 +72,8 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/swiperSlider/swiper.min.css">
 
 
-
+    <!-- Favicon -->
+    <link rel="icon" href="<?= $baseUrl ?>/assets/images/monogram.png" type="image/x-icon">
 
 
     <!-- Flatpickr css -->
@@ -109,7 +121,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
     </link>
 
     <!-- Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
@@ -398,7 +410,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
 
-                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
+                                            <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
                                             <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
                                         </span>
                                     </div>
@@ -488,4 +500,3 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
         <a href="logout.php">Logout</a>
     </nav>
 </header> -->
-
