@@ -230,7 +230,6 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                     href="<?= $baseUrl ?>/view/books/books-list.php">
                                     <i class="icon" data-bs-toggle="tooltip" title="Book List"
 
-
                                         data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>
                                     </i>

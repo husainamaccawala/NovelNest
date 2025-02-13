@@ -1,6 +1,6 @@
 <?php
 $baseUrl = '/NovelNest';
-require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/model/PdfsClass.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/model/PdfClass.php';
 
 $PdfClass = new PdfClass();
 
@@ -11,21 +11,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_FILES['pdf_file'])) {
             $file = $_FILES['pdf_file'];
             $fileName = time() . '_' . $file['name'];
-            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/uploads/pdfs/' . $fileName;
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/pdfs/' . $fileName;
+            $size = $file['size'];
 
             if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
                 $title = $_POST['title'] ?? '';
                 $description = $_POST['description'] ?? '';
                 $book_id = $_POST['book_id'] ?? 0;
-                $size = $file['size'];
 
                 $result = $PdfClass->addPdf($title, $description, $fileName, $book_id, $size);
 
-                if ($result) {
-                    echo json_encode(['status' => 'success', 'message' => 'PDF added successfully']);
-                } else {
-                    echo json_encode(['status' => 'error', 'message' => 'Failed to add PDF']);
-                }
+                echo json_encode(
+                    $result
+                        ? ['status' => 'success', 'message' => 'PDF added successfully']
+                        : ['status' => 'error', 'message' => 'Failed to add PDF']
+                );
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'File upload failed']);
             }
         }
     } elseif ($action === 'update') {
@@ -33,47 +35,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title = $_POST['title'] ?? '';
         $description = $_POST['description'] ?? '';
         $book_id = $_POST['book_id'] ?? 0;
+        $size = 0;
 
-        if (isset($_FILES['pdf_file'])) {
+        $oldPdf = $PdfClass->getPdfById($id);
+        if (!$oldPdf) {
+            echo json_encode(['status' => 'error', 'message' => 'PDF not found']);
+            exit;
+        }
+
+        if (isset($_FILES['pdf_file']) && $_FILES['pdf_file']['error'] === 0) {
             $file = $_FILES['pdf_file'];
             $fileName = time() . '_' . $file['name'];
-            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/uploads/pdfs/' . $fileName;
+            $uploadPath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/pdfs/' . $fileName;
+            $size = $file['size'];
 
             if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
-                $oldPdf = $PdfClass->getPdfById($id);
-                if ($oldPdf && file_exists($_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/uploads/pdfs/' . $oldPdf['file'])) {
-                    unlink($_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/uploads/pdfs/' . $oldPdf['file']);
+                $oldFilePath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/pdfs/' . $oldPdf['file'];
+                if (file_exists($oldFilePath)) {
+                    unlink($oldFilePath);
                 }
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'File upload failed']);
+                exit;
             }
         } else {
-            $oldPdf = $PdfClass->getPdfById($id);
             $fileName = $oldPdf['file'];
+            $size = $oldPdf['size']; // Preserve old file size
         }
 
-        $result = $PdfClass->updatePdf($id, $title, $description, $fileName, $book_id);
+        $result = $PdfClass->updatePdf($id, $title, $description, $fileName, $book_id, $size);
 
-        if ($result) {
-            echo json_encode(['status' => 'success', 'message' => 'PDF updated successfully']);
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Failed to update PDF']);
-        }
+        echo json_encode(
+            $result
+                ? ['status' => 'success', 'message' => 'PDF updated successfully']
+                : ['status' => 'error', 'message' => 'Failed to update PDF']
+        );
     } elseif ($action === 'delete') {
         $id = $_POST['id'] ?? 0;
         $pdf = $PdfClass->getPdfById($id);
 
         if ($pdf) {
-            $filePath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/uploads/pdfs/' . $pdf['file'];
+            $filePath = $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/assets/pdfs/' . $pdf['file'];
             if (file_exists($filePath)) {
                 unlink($filePath);
             }
 
             $result = $PdfClass->deletePdf($id);
 
-            if ($result) {
-                echo json_encode(['status' => 'success', 'message' => 'PDF deleted successfully']);
-            } else {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to delete PDF']);
-            }
+            echo json_encode(
+                $result
+                    ? ['status' => 'success', 'message' => 'PDF deleted successfully']
+                    : ['status' => 'error', 'message' => 'Failed to delete PDF']
+            );
         } else {
             echo json_encode(['status' => 'error', 'message' => 'PDF not found']);
         }
@@ -83,7 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($id) {
         $pdf = $PdfClass->getPdfById($id);
-        echo json_encode($pdf ? ['status' => 'success', 'data' => $pdf] : ['status' => 'error', 'message' => 'PDF not found']);
+        echo json_encode(
+            $pdf
+                ? ['status' => 'success', 'data' => $pdf]
+                : ['status' => 'error', 'message' => 'PDF not found']
+        );
     } else {
         $pdfs = $PdfClass->getPdfs();
         echo json_encode(['status' => 'success', 'data' => $pdfs ?: []]);
