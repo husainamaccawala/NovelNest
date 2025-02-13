@@ -30,6 +30,7 @@ function loadGenres() {
     });
 }
 
+
 // Function to load books
 function loadBooks() {
     $.ajax({
@@ -86,11 +87,13 @@ function loadBooks() {
                     $('#booksTable tbody').html(tableBody);
                 } else {
                     toastr.error('Failed to load books');
+
                 }
             } catch (e) {
                 console.error('Error parsing books:', e);
                 toastr.error('Error loading books');
             }
+
         },
         error: function (xhr, status, error) {
             console.error('Books loading error:', error);
@@ -107,6 +110,7 @@ function resetModal() {
     $('#previewImage').attr('src', '').hide();
     $('.custom-file-label').html('Choose file');
 }
+
 
 // Handle image preview
 $('#cover_image').change(function () {
@@ -139,6 +143,7 @@ $(document).on('click', '#btn', function (e) {
     e.preventDefault();
     const id = $(this).data('edit-id');
     const formData = new FormData($('#booksForm')[0]);
+
 
     // Validate required fields
     const title = $('#book_name').val().trim();
@@ -272,6 +277,7 @@ $(document).on('click', '.edit-btn', function () {
 $(document).on('click', '.delete-btn', function () {
     const bookId = $(this).data('id');
     if (confirm('Are you sure you want to delete this book?')) {
+
         $.ajax({
             url: `${baseUrl}/controller/booksController.php`,
             method: 'POST',
@@ -281,6 +287,7 @@ $(document).on('click', '.delete-btn', function () {
             },
             success: function (response) {
                 try {
+
                     const res = JSON.parse(response);
                     toastr[res.status](res.message);
                     if (res.status === 'success') {
@@ -296,6 +303,7 @@ $(document).on('click', '.delete-btn', function () {
                 toastr.error('Error deleting book');
             }
         });
+
     }
 });
 
@@ -310,7 +318,9 @@ $('#addBooksModal').on('hidden.bs.modal', function () {
     resetModal();
 });
 
+
 // Initialize page
 loadGenres();
 loadBooks();
 });
+
