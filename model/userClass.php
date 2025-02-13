@@ -4,11 +4,12 @@ require_once __DIR__.'/../config/DB.php';
 class UserClass
 {
     private $db;
-
+    private $conn;
+    private $table = "user";
     public function __construct()
     {
         $this->db = new DB();
-        $this->db = $this->db->connection();
+        $this->db = $this->db->connection(); // Ensure connection is stored properly
     }
 
     public function createUser($data)
@@ -47,6 +48,21 @@ class UserClass
         } else {
             return null;
         }
+    }
+
+    public function getUserByName($name) {
+        if (!$this->db) {
+            die(json_encode(['status' => 'error', 'message' => 'Database connection failed.']));
+        }
+    
+        $name = mysqli_real_escape_string($this->db, $name);
+        $query = "SELECT * FROM user WHERE name = '$name'";
+        $result = mysqli_query($this->db, $query);
+    
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        }
+        return null;
     }
 
     public function updateUser($data)
