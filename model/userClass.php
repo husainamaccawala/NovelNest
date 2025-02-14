@@ -55,12 +55,23 @@ class UserClass
 
     public function getUserByName($fullname) {
         $query = "SELECT * FROM user WHERE name = ?";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->db->prepare($query);
+    
+        if (!$stmt) {
+            die('Error preparing statement: ' . $this->db->error);
+        }
+    
         $stmt->bind_param("s", $fullname);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc(); // Return user record as an associative array
+    
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();  // Return user record if found
+        } else {
+            return null;  // No user found
+        }
     }
+    
     public function updateUser($data)
     {
         $id = $this->db->real_escape_string($data['id']);

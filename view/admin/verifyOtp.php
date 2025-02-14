@@ -76,6 +76,7 @@ require_once __DIR__."/../../controller/verifyOtpController.php";
     </link>
     <!--  <script src="/NovelNest/assets/js/ajax/admin.js"></script>  -->
     <script src="../../assets/js/ajax/admin.js"></script>
+    <script src="../../assets/js/ajax/verifyotp.js"></script>
     <script>
         (function() {
             const savedTheme = sessionStorage.getItem('booksto');

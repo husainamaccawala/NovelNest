@@ -22,12 +22,16 @@ $(document).ready(function () {
                 try {
                     var data = JSON.parse(response);
                     if (data.status === 'success') {
-                        window.location.href = data.redirect;
+                        // Show success message and redirect after a short delay
+                        $message.html('<p style="color: green;">OTP verified! Redirecting...</p>');
+                        setTimeout(function () {
+                            window.location.href = data.redirect; // Redirect to the appropriate page
+                        }, 1000);
                     } else {
                         $message.html('<p style="color: red;">' + data.message + '</p>');
                     }
                 } catch (e) {
-                    console.error("Error parsing JSON response:", e);
+                    console.error('Error processing response:', e);
                     $message.html('<p style="color: red;">An error occurred while processing your request.</p>');
                 }
             },

@@ -10,12 +10,10 @@ class Admin {
     }
 
     public function getAdminByFullname($fullname) {
-        $query = "SELECT * FROM admin WHERE fullname = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("s", $fullname);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc(); // Return admin record as an associative array
+        $query = "SELECT * FROM admin WHERE fullname = '$fullname' LIMIT 1";
+        $result = mysqli_query($this->conn, $query);
+        return mysqli_fetch_assoc($result);
     }
+    
 }
 ?>
