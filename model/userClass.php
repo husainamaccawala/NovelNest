@@ -50,21 +50,17 @@ class UserClass
         }
     }
 
-    public function getUserByName($name) {
-        if (!$this->db) {
-            die(json_encode(['status' => 'error', 'message' => 'Database connection failed.']));
-        }
-    
-        $name = mysqli_real_escape_string($this->db, $name);
-        $query = "SELECT * FROM user WHERE name = '$name'";
-        $result = mysqli_query($this->db, $query);
-    
-        if ($result && mysqli_num_rows($result) > 0) {
-            return mysqli_fetch_assoc($result);
-        }
-        return null;
-    }
+ 
 
+
+    public function getUserByName($fullname) {
+        $query = "SELECT * FROM user WHERE name = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $fullname);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc(); // Return user record as an associative array
+    }
     public function updateUser($data)
     {
         $id = $this->db->real_escape_string($data['id']);

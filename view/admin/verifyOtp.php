@@ -1,5 +1,7 @@
-<?php session_start();
+<?php 
 $baseUrl = '/NovelNest';
+
+require_once __DIR__."/../../controller/verifyOtpController.php";
  ?>
 
 <!doctype html>

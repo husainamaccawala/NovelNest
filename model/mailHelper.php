@@ -2,37 +2,41 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php'; // Ensure Composer's autoload file is correctly referenced
+require '../vendor/autoload.php'; // Make sure the autoload path is correct
 
 class MailHelper {
     public function sendMail($to, $subject, $message) {
-        $mail = new PHPMailer(true); // Create a new PHPMailer instance
+        $mail = new PHPMailer(true); // Instantiate PHPMailer
 
         try {
-            // Server settings
+            // Enable verbose debug output
+            $mail->SMTPDebug = 0; // Set to 2 for debugging (0 to disable)
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; // Replace with your SMTP server (Gmail example)
+            $mail->Host = 'smtp.gmail.com'; // SMTP host for Gmail
             $mail->SMTPAuth = true;
-            $mail->Username = 'your_email@gmail.com'; // Your email address
-            $mail->Password = 'your_email_password'; // Your email password
+            $mail->Username = 'mishrutisanchaniya1104@gmail.com'; // Your email address (Gmail)
+            $mail->Password = 'iwfv pxwtjezf gmqr'; // Use the app password here
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587; // Use port 587 for STARTTLS encryption
+            $mail->Port = 587;
 
-            // Recipients
-            $mail->setFrom('your_email@gmail.com', 'Mailer'); // Sender email and name
-            $mail->addAddress($to); // Add recipient email
+            // Set the sender and recipient
+            $mail->setFrom('your_email@gmail.com', 'NovelNest'); // Sender email
+            $mail->addAddress($to); // Recipient email (dynamically passed)
 
-            // Content
+            // Set the email content
             $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = $message;
+            $mail->Subject = $subject; // Subject of the email
+            $mail->Body = $message; // Email body (message content)
 
-            // Send the email
-            $mail->send();
-            return json_encode(['status' => 'success', 'message' => 'OTP sent successfully']);
+            // Attempt to send the email
+            if ($mail->send()) {
+                return true; // Email sent successfully
+            } else {
+                return false; // Failed to send email
+            }
         } catch (Exception $e) {
-            // Send a JSON response with the error message
-            return json_encode(['status' => 'error', 'message' => 'Failed to send OTP. Mailer Error: ' . $mail->ErrorInfo]);
+            echo "Mailer Error: " . $mail->ErrorInfo; // Show detailed error message
+            return false; // Return false if email fails to send
         }
     }
 }

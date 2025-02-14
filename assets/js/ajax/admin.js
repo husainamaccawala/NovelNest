@@ -19,19 +19,25 @@ $(document).ready(function () {
             method: 'POST',
             data: {
                 action: 'login',
-                fullname: $('#fullname').val(),
-                password: $('#password').val()
+                fullname: fullname,  // Passing trimmed value
+                password: password   // Passing trimmed value
             },
             success: function(response) {
-                console.log("Response from server:", response);  // Log the response to debug
-                if (response.status === 'success') {
-                    window.location.href = response.redirect; // Redirect if success
-                } else {
-                    $('#message').html('<p style="color: red;">' + response.message + '</p>'); // Show error message if failure
+                try {
+                    var data = JSON.parse(response); // Parse the JSON response
+                    if (data.status === 'success') {
+                        window.location.href = data.redirect; // Redirect if success
+                    } else {
+                        $('#message').html('<p style="color: red;">' + data.message + '</p>'); // Show error message if failure
+                    }
+                } catch (e) {
+                    console.error("Error parsing JSON response:", e);
+                    $('#message').html('<p style="color: red;">An error occurred while processing your request.</p>');
                 }
             },
             error: function(xhr, status, error) {
-                alert('An error occurred. Please try again.');
+                console.error("AJAX request failed:", status, error);
+                $('#message').html('<p style="color: red;">An error occurred. Please try again.</p>');
             }
         });
 
