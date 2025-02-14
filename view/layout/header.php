@@ -172,7 +172,6 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
             <div class="sidebar-list">
                 <!-- Sidebar Menu Start -->
                 <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
-
                     <li class="nav-item static-item">
                         <a class="nav-link static-item disabled" href="#">
                             <span class="default-icon">Admin Panel</span>
@@ -180,144 +179,102 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="<?= $baseUrl ?>/index.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Dashboard"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/index.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">
                                 <i class="ph-duotone ph-gauge"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Dashboard" data-bs-placement="right">Db</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">Db</i>
                             <span class="item-name">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="<?= $baseUrl ?>/view/genre/genre-list.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Genres"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/genre/genre-list.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Genres" data-bs-placement="right">
                                 <i class="ph-duotone ph-squares-four"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Genres" data-bs-placement="right">Gen</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Genres" data-bs-placement="right">Gen</i>
                             <span class="item-name">Genres</span>
                         </a>
                     </li>
                     <li class="nav-item iq-drop">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#user" role="button"
-                            aria-expanded="false">
-                            <i class="icon" data-bs-toggle="tooltip" title="Books"
-                                data-bs-placement="right">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#user" role="button" aria-expanded="false">
+                            <i class="icon" data-bs-toggle="tooltip" title="Books" data-bs-placement="right">
                                 <i class="ph-duotone ph-book-bookmark"></i>
                             </i>
                             <span class="item-name">Books</span>
                             <i class="right-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                    class="icon-18" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M9 5l7 7-7 7" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" class="icon-18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             </i>
                         </a>
                         <ul class="sub-nav collapse" id="user" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a
-                                    class="nav-link "
-                                    aria-current="page"
-                                    href="<?= $baseUrl ?>/view/books/books-list.php">
-                                    <i class="icon" data-bs-toggle="tooltip" title="Book List"
-
-                                        data-bs-placement="right">
+                                <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/books/books-list.php">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Book List" data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>
                                     </i>
-
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                        title="Book List"
-                                        data-bs-placement="right">Bl</i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Book List" data-bs-placement="right">Bl</i>
                                     <span class="item-name">Book List</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a
-                                    class="nav-link "
-                                    aria-current="page"
-                                    href="<?= $baseUrl ?>/view/pdfs/pdfs-list.php">
-
-
-                                    <i class="icon" data-bs-toggle="tooltip" title="Book PDF"
-                                        data-bs-placement="right">
+                                <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/pdfs/pdfs-list.php">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Book PDF" data-bs-placement="right">
                                         <i class="ph-duotone ph-file-pdf"></i>
                                     </i>
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                        title="E-Books"
-                                        data-bs-placement="right">eb</i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="E-Books" data-bs-placement="right">eb</i>
                                     <span class="item-name">E-Books</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a
-                                    class="nav-link "
-                                    aria-current="page"
-                                    href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
-
-                                    <i class="icon" data-bs-toggle="tooltip" title="Audiobooks"
-                                        data-bs-placement="right">
+                                <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Audiobooks" data-bs-placement="right">
                                         <i class="fa fa-file-audio-o"></i>
                                     </i>
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                        title="Audiobooks"
-                                        data-bs-placement="right">ab</i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Audiobooks" data-bs-placement="right">ab</i>
                                     <span class="item-name">Audiobooks</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="<?= $baseUrl ?>/view/user/user-list.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="User"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/user/user-list.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="User" data-bs-placement="right">
                                 <i class="ph-duotone ph-identification-badge"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Users" data-bs-placement="right">U</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Users" data-bs-placement="right">U</i>
                             <span class="item-name">Users</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="/novelnest/view/subscription/subscription.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Subscription"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/subscription/subscription.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Subscription" data-bs-placement="right">
                                 <i class="ph-duotone ph-tag"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Subscription" data-bs-placement="right">Sub</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Subscription" data-bs-placement="right">Sub</i>
                             <span class="item-name">Subscription</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="/novelnest/view/invoice/invoice.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Invoices"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/invoice/invoice.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Invoices" data-bs-placement="right">
                                 <i class="ph-duotone ph-chat-centered"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Invoices" data-bs-placement="right">Inv</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Invoices" data-bs-placement="right">Inv</i>
                             <span class="item-name">Invoices</span>
                         </a>
                     </li>
-                    <!-- Sidebar Menu End -->
+                
+
+                <!-- Sidebar Menu End -->
             </div>
         </div>
     </aside>
+
+
+
+
 
     <main class="main-content">
         <div class="position-sticky top-0 z-3">
@@ -499,3 +456,47 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
         <a href="logout.php">Logout</a>
     </nav>
 </header> -->
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebarLinks = document.querySelectorAll('#sidebar-menu .nav-link');
+    const currentPath = window.location.pathname;
+
+    sidebarLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').replace(/^.*\/\/[^\/]+/, '');
+
+      if (currentPath === linkPath) {
+        link.classList.add('active');
+        const parentDropdown = link.closest('.nav-item.iq-drop');
+        if (parentDropdown) {
+          const collapseElement = parentDropdown.querySelector('.collapse');
+          collapseElement?.classList.add('show');
+          const parentLink = parentDropdown.querySelector('[data-bs-toggle="collapse"]');
+          parentLink?.setAttribute('aria-expanded', 'true');
+          parentLink?.classList.add('active');
+        }
+      }
+
+      link.addEventListener('click', event => {
+        if (link.closest('.sub-nav')) {
+          event.stopPropagation();
+        }
+
+        sidebarLinks.forEach(navLink => navLink.classList.remove('active'));
+        link.classList.add('active');
+
+        const parentDropdown = link.closest('.nav-item.iq-drop');
+        if (parentDropdown) {
+          const collapseElement = parentDropdown.querySelector('.collapse');
+          collapseElement?.classList.add('show');
+          const parentLink = parentDropdown.querySelector('[data-bs-toggle="collapse"]');
+          parentLink?.setAttribute('aria-expanded', 'true');
+          parentLink?.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+
+

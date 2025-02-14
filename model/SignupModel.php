@@ -18,22 +18,24 @@ class SignupModel {
         return $result->fetch_assoc();
     }
 
-    public function createUser($name, $email, $contact, $gender, $password, $profile) {
+    public function createUser($name, $email, $gender, $password, $profile) {
         $conn = $this->db->connection();
 
+        // Define the server-side upload directory
+        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/NovelNest/assets/images/';
+
+        // Define the client-side URL path
+        $profileUrl = '/NovelNest/assets/images/' . basename($profile['name']);
+
         // Handle file upload
-        $uploadDir ='../assets/images/uploads/';
         $profilePath = $uploadDir . basename($profile['name']);
 
         if (!move_uploaded_file($profile['tmp_name'], $profilePath)) {
             return false;
         }
 
-        // Store the relative path for database
-        $profileUrl = '../assets/images/uploads/' . basename($profile['name']);
-
-        $stmt = $conn->prepare("INSERT INTO user (name, email, contact, gender, password, profile) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssss", $name, $email, $contact, $gender, $password, $profileUrl);
+        $stmt = $conn->prepare("INSERT INTO user (name, email, gender, password, profile) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $name, $email, $gender, $password, $profileUrl);
 
         if ($stmt->execute()) {
             return true;

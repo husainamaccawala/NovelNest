@@ -11,8 +11,8 @@ class SignupController {
         $this->userModel = new SignupModel();
     }
 
-    public function signup($name, $email, $contact, $gender, $password, $profile) {
-        if (empty($name) || empty($email) || empty($contact) || empty($gender) || empty($password) || empty($profile)) {
+    public function signup($name, $email, $gender, $password, $profile) {
+        if (empty($name) || empty($email)|| empty($gender) || empty($password) || empty($profile)) {
             echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
             return;
         }
@@ -27,7 +27,7 @@ class SignupController {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert new user into the database
-        $result = $this->userModel->createUser($name, $email, $contact, $gender, $hashedPassword, $profile);
+        $result = $this->userModel->createUser($name, $email, $gender, $hashedPassword, $profile);
 
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Signup successful!', 'redirect' => "/NovelNest/view/admin/adminSigninForm.php"]);
@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $controller->signup(
         trim($_POST['user-name']),
         trim($_POST['email']),
-        trim($_POST['contact']),
         trim($_POST['gender']),
         trim($_POST['password']),
         $_FILES['photo']
