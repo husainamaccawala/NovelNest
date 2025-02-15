@@ -1,5 +1,7 @@
 $(document).ready(function () {
     const baseUrl = '/NovelNest';
+    // Initialize DataTable
+    let table = $('#datatable').DataTable();
 
     // Load books for select dropdown
     function loadBooks() {
@@ -36,41 +38,53 @@ $(document).ready(function () {
         $.ajax({
             url: `${baseUrl}/controller/audiobookController.php`,
             method: 'GET',
-            data: { action: 'list' },
+            data: { action: 'get' },
             success: function (response) {
+                console.log("API Response:", response); // ✅ Debugging
+    
                 try {
                     const data = JSON.parse(response);
+                    console.log("Parsed Data:", data); // ✅ Debugging
+    
                     if (data.status === 'success' && Array.isArray(data.data)) {
-                        let tableBody = '';
-                        data.data.forEach((audiobook, index) => {
-                            const timestamp = new Date().getTime();
-                            tableBody +=
-                                `<tr>
-                                    <td>${index + 1}</td>
-                                    <td>${audiobook.book_name}</td>
-                                    <td>${audiobook.description}</td>
-                                    <td>${audiobook.narrator}</td>
-                                    <td>
-                                        <audio controls preload="none" class="audiobook-player">
-                                            <source src="${baseUrl}/assets/audiobooks/${audiobook.file}?t=${timestamp}" type="audio/mpeg">
-                                            Your browser does not support the audio element.
-                                        </audio>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary edit-btn" data-id="${audiobook.id}">
-                                            Edit
-                                        </button>
-                                        <button class="btn btn-sm btn-danger delete-btn" data-id="${audiobook.id}">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>`;
+                        table.clear().draw(); // Clear existing table data
+    
+                        let serialNumber = 1;
+                        const timestamp = new Date().getTime(); // Prevent audio caching
+    
+                        data.data.forEach(audiobook => {
+                            table.row.add([
+                                serialNumber,
+                                audiobook.book_name,
+                                audiobook.description,
+                                audiobook.narrator,
+                                `<audio controls preload="none" class="audiobook-player">
+                                    <source src="${baseUrl}/assets/audiobooks/${audiobook.file}?t=${timestamp}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>`,
+                                `<button class="btn btn-primary btn-sm edit-btn" 
+                                    data-id="${audiobook.id}" 
+                                    data-book_name="${audiobook.book_name}" 
+                                    data-description="${audiobook.description}" 
+                                    data-narrator="${audiobook.narrator}">
+                                    <i class="las la-pen"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm delete-btn" 
+                                    data-id="${audiobook.id}">
+                                    <i class="las la-trash-alt"></i>
+                                </button>`
+                            ]).draw(false);
+    
+                            serialNumber++;
                         });
-                        $('#user-table tbody').html(tableBody);
-
-                        $('.audiobook-player').each(function () {
-                            this.load();
-                        });
+    
+                        // Reload audio players after DataTables update
+                        setTimeout(() => {
+                            $('.audiobook-player').each(function () {
+                                this.load();
+                            });
+                        }, 500);
+                        
                     } else {
                         toastr.error('Failed to load audiobooks');
                     }
@@ -81,11 +95,11 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 console.error('Audiobooks loading error:', error);
-                toastr.error('Failed to load audiobooks');
+                toastr.error('Error fetching audiobooks data');
             }
         });
     }
-
+    
     // Handle form submission (Add/Update)
     $('#audiobookForm').submit(function (e) {
         e.preventDefault();

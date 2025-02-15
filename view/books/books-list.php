@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/view/books/booksForm.php';
                 </div>
                 <div class="card-body">
                     <div class="custom-table-effect table-responsive custom-table-search ">
-                        <table class=" mb-0 table table-bordered custom-datatable-border" id="booksTable" data-toggle="data-table">
+                        <table class=" mb-0 table table-bordered custom-datatable-border" id="datatable" data-toggle="data-table">
                             <thead>
                                 <tr class="bg-white">
                                     <th scope="col" class="border-bottom bg-primary text-white">No</th>

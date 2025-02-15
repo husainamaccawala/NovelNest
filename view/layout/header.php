@@ -116,6 +116,8 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!--revenue Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -171,7 +173,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="<?= $baseUrl ?>/admin_index.php">
+                            href="<?= $baseUrl ?>/view/dashboard/dashboard.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Dashboard"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-gauge"></i>
@@ -280,7 +282,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="/novelnest/view/subscription/subscription.php">
+                            href="<?= $baseUrl ?>/view/subscription/subscription.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Subscription"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-tag"></i>
@@ -293,7 +295,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                     <li class="nav-item">
                         <a class="nav-link"
                             aria-current="page"
-                            href="/novelnest/view/invoice/invoice.php">
+                            href="<?= $baseUrl ?>/view/invoice/invoice.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Invoices"
                                 data-bs-placement="right">
                                 <i class="ph-duotone ph-chat-centered"></i>
@@ -398,7 +400,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
 
-                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
+                                            <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
                                             <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
                                         </span>
                                     </div>
@@ -469,7 +471,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                                 </div>
                                             </a> -->
                                         <div class=" p-3 d-flex justify-content-center align-items-center">
-                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="/novelnest/logout.php"
+                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="<?= $baseUrl ?>/logout.php"
                                                 role="button">Sign out <i class="ph ph-sign-out"></i></a>
                                         </div>
                                     </div>
@@ -488,4 +490,3 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
         <a href="logout.php">Logout</a>
     </nav>
 </header> -->
-

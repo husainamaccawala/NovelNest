@@ -33,11 +33,11 @@ $(document).ready(function () {
                                 data-id="${genre.id}" 
                                 data-name="${genre.name}" 
                                 data-description="${genre.description}">
-                                Edit
+                                <i class="las la-pen"></i>
                             </button>
                             <button class="btn btn-danger btn-sm delete-btn" 
                                 data-id="${genre.id}">
-                                Delete
+                                <i class="las la-trash-alt"></i>
                             </button>`
                         ]).draw(false);
                         serialNumber++;
