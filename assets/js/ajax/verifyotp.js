@@ -32,7 +32,7 @@ $(document).ready(function () {
                     }
                 } catch (e) {
                     console.error('Error processing response:', e);
-                    $message.html('<p style="color: red;">An error occurred while processing your request.</p>');
+                    $message.html('<p style="color: red;">Invalid OTP. Please Try Again. </p>');
                 }
             },
             error: function (xhr, status, error) {

@@ -12,10 +12,10 @@ $baseUrl = '/NovelNest';
 if (isset($_SESSION['admin_id'])) {
     // Admin is logged in, retrieve session variables
     $adminName = $_SESSION['admin_name'] ?? 'Admin'; // Default to 'Admin' if not set
-    $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg'; // Default image if not set
+    $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/avatars/09.jpg'; // Default image if not set
 } else {
     $adminName = 'Admin';
-    $adminProfileImage = 'assets/images/default-avatar.jpg';
+    $adminProfileImage = 'assets/images/avatars/09.jpg';
 }
 ?>
 
@@ -400,7 +400,7 @@ if (isset($_SESSION['admin_id'])) {
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
 
-                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
+                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin" class="img-fluid rounded-circle object-fit-cover avatar-50">
                                             <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
                                         </span>
                                     </div>

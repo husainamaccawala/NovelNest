@@ -125,7 +125,7 @@ require_once __DIR__."/../../controller/verifyOtpController.php";
                                         <!--logo End-->
                                     </a>
                                 </div>
-                                <h1 class="reset-pw text-primary" align="center">Two-Step Verification</h1>
+                                <h1 class="reset-pw text-primary" align="center">OTP Verification</h1>
                                 <p class="mb-5 auth-desc"> Enter The Six Digit OTP Code That Has Been Sent To Your Email Address </p>
 
 <form id="reset-password-form">
