@@ -8,14 +8,16 @@ $baseUrl = '/NovelNest';
 
 <!-- Mirrored from templates.iqonic.design/booksto-dist/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Dec 2024 11:46:07 GMT -->
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+// session_start();
+
+if (isset($_SESSION['admin_id'])) {
+    // Admin is logged in, retrieve session variables
+    $adminName = $_SESSION['admin_name'] ?? 'Admin'; // Default to 'Admin' if not set
+    $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/avatars/09.jpg'; // Default image if not set
+} else {
+    $adminName = 'Admin';
+    $adminProfileImage = 'assets/images/avatars/09.jpg';
 }
-
-// Handle admin name and profile image
-$adminName = $_SESSION['admin_name'];
-$adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg';
-
 ?>
 
 <head>
@@ -375,7 +377,9 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
 
-                                            <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin Profile" class="img-fluid rounded-circle object-fit-cover avatar-50">
+
+                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin" class="img-fluid rounded-circle object-fit-cover avatar-50">
+
                                             <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
                                         </span>
                                     </div>

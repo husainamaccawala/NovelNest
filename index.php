@@ -1,23 +1,22 @@
 <?php
 session_start();
 
-// Check if the admin is logged in
-if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_name'])) {
-    header('Location: /NovelNest/view/admin/adminSigninForm.php');
+
+if (isset($_SESSION['admin_id'])) {
+    // Admin is logged in
+    $adminName = $_SESSION['admin_name'] ?? 'Admin';
+    $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg';
+} elseif (isset($_SESSION['user_id'])) {
+    // User is logged in
+} else {
+    header("Location: /NovelNest/view/admin/adminSigninForm.php");
+
     exit;
 }
 
-// Retrieve admin data from session
-$adminName = $_SESSION['admin_name'];
-$adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg'; // Default image if none set
-// Default image if none set
-
-
 require_once __DIR__ . "/view/layout/header.php";
 
-require_once __DIR__."/view/dashboard/dashboard.php";
+require_once __DIR__ . "/view/admin/dashboard.php";
 
-// Include the footer
 require_once __DIR__ . "/view/layout/footer.php";
 ?>
-

@@ -13,36 +13,33 @@ $(document).ready(function () {
 
         console.log("Fullname:", fullname);  // Debugging
         console.log("Password:", password);  // Debugging
-        console.log("name:", fullname); 
 
         $.ajax({
             url: '../../controller/adminController.php',
-            type: 'POST',
+            method: 'POST',
             data: {
                 action: 'login',
-                fullname: fullname,
-                password: password,
+                fullname: fullname,  // Passing trimmed value
+                password: password   // Passing trimmed value
             },
-            success: function (response) {
-                console.log("Raw Response:", response); // Debug response
+            success: function(response) {
                 try {
-                    const res = JSON.parse(response);
-                    if (res.status === 'success') {
-                        $('#message').html('<p style="color: green;">Sign-in successful. Redirecting...</p>');
-                        setTimeout(() => {
-                            window.location.href = res.redirect;
-                        }, 1000);
+                    var data = JSON.parse(response); // Parse the JSON response
+                    if (data.status === 'success') {
+                        window.location.href = data.redirect; // Redirect if success
                     } else {
-                        $('#message').html('<p style="color: red;">' + res.message + '</p>');
+                        $('#message').html('<p style="color: red;">' + data.message + '</p>'); // Show error message if failure
                     }
                 } catch (e) {
-                    console.error("Invalid JSON:", e);
-                    $('#message').html('<p style="color: red;">Server Error: Invalid JSON Response</p>');
+                    console.error("Error parsing JSON response:", e);
+                    $('#message').html('<p style="color: red;">An error occurred while processing your request.</p>');
                 }
             },
-            error: function () {
+            error: function(xhr, status, error) {
+                console.error("AJAX request failed:", status, error);
                 $('#message').html('<p style="color: red;">An error occurred. Please try again.</p>');
-            },
+            }
         });
+
     });
 });
