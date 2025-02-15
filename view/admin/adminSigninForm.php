@@ -10,10 +10,10 @@ $baseUrl = '/NovelNest';
 <!-- Mirrored from templates.iqonic.design/booksto-dist/html/auth/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Dec 2024 11:53:11 GMT -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <meta name="description"
     content="Booksto is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
   <meta name="keywords"
@@ -74,7 +74,7 @@ $baseUrl = '/NovelNest';
   <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/phosphor-icons/Fonts/fill/style.css">
   </link>
   <!--  <script src="/NovelNest/assets/js/ajax/admin.js"></script>  -->
-   <script src="../../assets/js/ajax/admin.js"></script>  
+  <script src="../../assets/js/ajax/admin.js"></script>
   <script>
     (function() {
       const savedTheme = sessionStorage.getItem('booksto');
@@ -99,6 +99,10 @@ $baseUrl = '/NovelNest';
   </div> -->
 
   <div class="wrapper">
+
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
 
     <div class="login-content">
       <div class="container">
@@ -125,35 +129,37 @@ $baseUrl = '/NovelNest';
                   </a>
                 </div>
                 <h1 class="text-primary reset-pw fw-900 d-flex ms-1 justify-content-center">Sign In</h1>
-                <p class="text-center mb-4 auth-desc">Enter your email address and password to access admin
-                  panel.</p>
-                  <div id="message"></div>
-                  <form id="admin-login-form">
-                <div class="mb-3">
+                <p class="text-center mb-4 auth-desc">Enter your email address and password for access.</p>
+                <div id="message"></div>
+                <form id="admin-login-form">
+                  <div class="mb-3">
                     <label for="fullname" class="form-label">Full Name</label>
                     <input type="text" class="form-control" id="fullname" name="fullname" required>
-                </div>
-                <div class="mb-3">
+                  </div>
+                  <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between mb-5">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="remember" required="required">
+                      <label class="form-check-label" for="remember">
+                        Remember Me
+                      </label>
+                    </div>
+                    <a href="recoverpw.php" class="forgot-pwd">Forgot Password?</a>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                  <div id="error-message" class="text-danger mt-3"></div>
+                  <div id="success-message" class="text-success mt-3"></div>
+
+
+                </form>
+
+                <div class="d-flex align-items-center mt-5 justify-content-center auth-signup">
+                  <p class="text-center mb-0">If you don't have account!!<a href="<?= $baseUrl ?>/view/signup/signup.php"
+                      class="ms-2">Sign Up</a></p>
                 </div>
-                <div class="d-flex align-items-center justify-content-between mb-5">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="remember" required="required">
-                  <label class="form-check-label" for="remember">
-                    Remember Me
-                  </label>
-                </div>
-                <a href="recoverpw.php" class="forgot-pwd">Forgot Password?</a>
-              </div>
-                <button type="submit" class="btn btn-primary w-100">Sign In</button>
-                <div id="error-message" class="text-danger mt-3"></div>
-                <div id="success-message" class="text-success mt-3"></div>
-
-                
-            </form>
-
-
 
               </div>
             </div>
@@ -164,3 +170,61 @@ $baseUrl = '/NovelNest';
   </div>
 
   </div>
+
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .bg {
+      animation: slide 3s ease-in-out infinite alternate;
+      background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+      bottom: 0;
+      left: -50%;
+      opacity: .5;
+      position: fixed;
+      right: -50%;
+      top: 0;
+      z-index: -1;
+    }
+
+    .bg2 {
+      animation-direction: alternate-reverse;
+      animation-duration: 4s;
+    }
+
+    .bg3 {
+      animation-duration: 5s;
+    }
+
+    .content {
+      background-color: rgba(255, 255, 255, .8);
+      border-radius: .25em;
+      box-shadow: 0 0 .25em rgba(0, 0, 0, .25);
+      box-sizing: border-box;
+      left: 50%;
+      padding: 10vmin;
+      position: fixed;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    h1 {
+      font-family: monospace;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(-25%);
+      }
+
+      100% {
+        transform: translateX(25%);
+      }
+    }
+  </style>
