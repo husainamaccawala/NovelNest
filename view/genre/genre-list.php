@@ -28,9 +28,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . '/view/genre/form.php';
                                         <th scope="col" class="border-bottom bg-primary text-white">Category Name</th>
                                         <th scope="col" class="border-bottom bg-primary text-white custom-column-width">Category
                                             Description</th>
-                                        <th scope="col" class="border-bottom bg-primary text-white" colspan="2">Action</th>
+                                        <th scope="col" class="border-bottom bg-primary text-white">Action</th>
                                     </tr>
                                 </thead>
+                                <tbody></tbody>
 
                             </table>
                         </div>

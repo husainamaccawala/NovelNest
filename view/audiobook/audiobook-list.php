@@ -10,17 +10,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/audiobook/audiobookFo
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="header-title">
-                            <h4 class="card-title">Audiobook List</h4>
+                    <div class="card-header d-flex justify-content-between align-items-center position-relative">
+                        <div class="iq-header-title">
+                            <h4 class="mb-0">Audiobook List</h4>
                         </div>
                         <div class="iq-card-header-toolbar d-flex align-items-center">
                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#audiobookModal">Add New AudioBook</button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="custom-table-effect table-responsive custom-table-search user-table">
-                            <table class="mb-0 table table-bordered" id="user-table" data-toggle="data-table" border="1">
+                        <div class="custom-table-effect table-responsive custom-table-search">
+                            <table class="mb-0 table table-bordered custom-datatable-border" id="datatable" data-toggle="data-table">
                                 <thead class="">
                                     <tr class="bg-white">
                                         <th scope="col" class="border-bottom bg-primary text-white">Srno.</th>

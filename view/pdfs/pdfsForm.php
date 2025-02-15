@@ -1,5 +1,11 @@
+<?php
+// Include BooksClass
+require_once $_SERVER['DOCUMENT_ROOT'] . '/NovelNest/model/BooksClass.php';
 
-<div class="modal fade" id="addPdfsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+$booksClass = new BooksClass();
+$books = $booksClass->getAllBooks(); // Fetch genres from the database
+?>
+<div class="modal fade" id="addPdfModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,35 +17,35 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="" id="pdf sForm" enctype="multipart/form-data">
+                                <form action="" id="pdfForm" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="cover_image">Cover Image</label>
-                                        <input type="file" class="form-control" id="cover_image" name="cover_image">
-                                        <img id="previewImage" src="" alt="Preview" style="display: none; margin-top: 10px;">
+                                        <label for="book_name"> PDF Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="book_name">Book Name</label>
-                                        <input type="text" class="form-control" id="book_name" name="book_name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="genres">Genre</label>
-                                        <select class="form-control" id="genres" name="genres" required>
-                                           
+                                        <label for="book">Book Name</label>
+                                        <select class="form-control" id="books" name="books" required>
+                                            <!-- Options populated dynamically -->
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="author">Author</label>
-                                        <input type="text" class="form-control" id="author" name="author" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="description">Description *</label>
+                                        <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" required></textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="pdf_file">Upload PDF</label>
+                                        <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept=".pdf" required>
+                                    </div>
+                                    <div class="form-group">
+                                    <input type="hidden" id="existingFile" name="existing_file">
+                                         </div>
+                                    
                                     <div class="d-flex gap-2">
                                         <button type="reset" class="btn btn-danger">Reset</button>
                                         <button type="button" class="btn btn-primary" id="btn">Save</button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

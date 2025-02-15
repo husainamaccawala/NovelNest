@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $baseUrl = '/NovelNest';
 ?>
 <!doctype html>
@@ -22,17 +23,27 @@ if (isset($_SESSION['admin_id'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title data-setting="#" data-rightJoin="NovelNest: Online Reading Platform">NovelNest: Online Reading Platform</title>
-    <meta name="description"
-        content="Booksto is a revolutionary Bootstrap Admin Dashboard Template and UI Components Library. The Admin Dashboard Template and UI Component features 8 modules.">
-    <meta name="keywords"
-        content="premium, admin, dashboard, template, bootstrap 5, clean ui, Booksto, admin dashboard,responsive dashboard, optimized dashboard,">
-    <meta name="author" content="Iqonic Design">
-    <meta name="DC.title" content="Booksto Book store management system">
+    <title>NovelNest: Online Reading Platform</title>
+    <meta name="description" content="NovelNest is the ultimate online reading platform where book lovers can explore, read, and discover thousands of free and premium novels, stories, and books from various genres. Join now!">
+    <meta name="keywords" content="NovelNest, online novels, free books, read books online, e-books, best novels, premium novels, digital library, book reading platform">
+    <meta name="author" content="NovelNest Team">
+    <meta name="DC.title" content="NovelNest - Online Reading Platform">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    <meta name="distribution" content="global">
+    <meta property="og:title" content="NovelNest: Read & Discover Books Online">
+    <meta property="og:description" content="Discover thousands of novels and books on NovelNest, the ultimate reading platform for book lovers.">
+    <meta property="og:url" content="https://www.novelnest.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.novelnest.com/images/novelnest-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NovelNest: Online Reading Platform">
+    <meta name="twitter:description" content="Read and discover the best novels online. Thousands of free and premium books available at NovelNest.">
+    <meta name="twitter:image" content="https://www.novelnest.com/images/novelnest-preview.jpg">
 
     <script>
         (function() {
-            const savedTheme = sessionStorage.getItem('booksto');
+            const savedTheme = sessionStorage.getItem('novelnest');
 
             if (savedTheme) {
                 const settings = JSON.parse(savedTheme);
@@ -41,6 +52,7 @@ if (isset($_SESSION['admin_id'])) {
             }
         })();
     </script>
+
 
     <meta name="setting_options" content='{&quot;saveLocal&quot;:&quot;sessionStorage&quot;,&quot;storeKey&quot;:&quot;booksto&quot;,&quot;setting&quot;:{&quot;app_name&quot;:{&quot;value&quot;:&quot;Booksto&quot;},&quot;theme_scheme_direction&quot;:{&quot;value&quot;:&quot;ltr&quot;},&quot;theme_scheme&quot;:{&quot;value&quot;:&quot;light&quot;},&quot;theme_style_appearance&quot;:{&quot;value&quot;:[&quot;theme-default&quot;]},&quot;theme_color&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;theme_transition&quot;:{&quot;value&quot;:&quot;theme-with-animation&quot;},&quot;theme_font_size&quot;:{&quot;value&quot;:&quot;theme-fs-md&quot;},&quot;page_layout&quot;:{&quot;value&quot;:&quot;container-fluid&quot;},&quot;header_navbar&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;header_banner&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;sidebar_color&quot;:{&quot;value&quot;:&quot;sidebar-white&quot;},&quot;card_color&quot;:{&quot;value&quot;:&quot;card-default&quot;},&quot;sidebar_type&quot;:{&quot;value&quot;:[]},&quot;sidebar_menu_style&quot;:{&quot;value&quot;:&quot;text-hover&quot;},&quot;footer&quot;:{&quot;value&quot;:&quot;default&quot;},&quot;body_font_family&quot;:{&quot;value&quot;:null},&quot;heading_font_family&quot;:{&quot;value&quot;:null}}}'>
     <!-- Google Font Api KEY-->
@@ -63,7 +75,8 @@ if (isset($_SESSION['admin_id'])) {
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/swiperSlider/swiper.min.css">
 
 
-
+    <!-- Favicon -->
+    <link rel="icon" href="<?= $baseUrl ?>/assets/images/monogram.png" type="image/x-icon">
 
 
     <!-- Flatpickr css -->
@@ -111,12 +124,14 @@ if (isset($_SESSION['admin_id'])) {
     </link>
 
     <!-- Toastr CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     <!-- <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" /> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!--revenue Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -162,7 +177,6 @@ if (isset($_SESSION['admin_id'])) {
             <div class="sidebar-list">
                 <!-- Sidebar Menu Start -->
                 <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
-
                     <li class="nav-item static-item">
                         <a class="nav-link static-item disabled" href="#">
                             <span class="default-icon">Admin Panel</span>
@@ -170,145 +184,108 @@ if (isset($_SESSION['admin_id'])) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="<?= $baseUrl ?>/index.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Dashboard"
-                                data-bs-placement="right">
+
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/index.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">
+
                                 <i class="ph-duotone ph-gauge"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Dashboard" data-bs-placement="right">Db</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">Db</i>
                             <span class="item-name">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="<?= $baseUrl ?>/view/genre/genre-list.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Genres"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/genre/genre-list.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Genres" data-bs-placement="right">
                                 <i class="ph-duotone ph-squares-four"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Genres" data-bs-placement="right">Gen</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Genres" data-bs-placement="right">Gen</i>
                             <span class="item-name">Genres</span>
                         </a>
                     </li>
                     <li class="nav-item iq-drop">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#user" role="button"
-                            aria-expanded="false">
-                            <i class="icon" data-bs-toggle="tooltip" title="Books"
-                                data-bs-placement="right">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#user" role="button" aria-expanded="false">
+                            <i class="icon" data-bs-toggle="tooltip" title="Books" data-bs-placement="right">
                                 <i class="ph-duotone ph-book-bookmark"></i>
                             </i>
                             <span class="item-name">Books</span>
                             <i class="right-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18"
-                                    class="icon-18" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M9 5l7 7-7 7" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" class="icon-18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
                             </i>
                         </a>
                         <ul class="sub-nav collapse" id="user" data-bs-parent="#sidebar-menu">
                             <li class="nav-item">
-                                <a
-                                    class="nav-link "
-                                    aria-current="page"
-                                    href="<?= $baseUrl ?>/view/books/books-list.php">
-                                    <i class="icon" data-bs-toggle="tooltip" title="Book List"
-
-
-                                        data-bs-placement="right">
+                                <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/books/books-list.php">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Book List" data-bs-placement="right">
                                         <i class="ph-duotone ph-rows"></i>
                                     </i>
-
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                        title="Book List"
-                                        data-bs-placement="right">Bl</i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Book List" data-bs-placement="right">Bl</i>
                                     <span class="item-name">Book List</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a
-                                    class="nav-link "
-                                    aria-current="page"
-                                    href="<?= $baseUrl ?>/view/pdfs/pdfs-list.php">
-
-
-                                    <i class="icon" data-bs-toggle="tooltip" title="Book PDF"
-                                        data-bs-placement="right">
+                                <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/pdfs/pdfs-list.php">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Book PDF" data-bs-placement="right">
                                         <i class="ph-duotone ph-file-pdf"></i>
                                     </i>
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                        title="E-Books"
-                                        data-bs-placement="right">eb</i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="E-Books" data-bs-placement="right">eb</i>
                                     <span class="item-name">E-Books</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a
-                                    class="nav-link "
-                                    aria-current="page"
-                                    href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
-
-                                    <i class="icon" data-bs-toggle="tooltip" title="Audiobooks"
-                                        data-bs-placement="right">
+                                <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/audiobook/audiobook-list.php">
+                                    <i class="icon" data-bs-toggle="tooltip" title="Audiobooks" data-bs-placement="right">
                                         <i class="fa fa-file-audio-o"></i>
                                     </i>
-                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                        title="Audiobooks"
-                                        data-bs-placement="right">ab</i>
+                                    <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Audiobooks" data-bs-placement="right">ab</i>
                                     <span class="item-name">Audiobooks</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="<?= $baseUrl ?>/view/user/user-list.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="User"
-                                data-bs-placement="right">
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/user/user-list.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="User" data-bs-placement="right">
                                 <i class="ph-duotone ph-identification-badge"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Users" data-bs-placement="right">U</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Users" data-bs-placement="right">U</i>
                             <span class="item-name">Users</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="/novelnest/view/subscription/subscription.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Subscription"
-                                data-bs-placement="right">
+
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/subscription/subscription.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Subscription" data-bs-placement="right">
+
                                 <i class="ph-duotone ph-tag"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Subscription" data-bs-placement="right">Sub</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Subscription" data-bs-placement="right">Sub</i>
                             <span class="item-name">Subscription</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"
-                            aria-current="page"
-                            href="/novelnest/view/invoice/invoice.php">
-                            <i class="icon" data-bs-toggle="tooltip" title="Invoices"
-                                data-bs-placement="right">
+
+                        <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/invoice/invoice.php">
+                            <i class="icon" data-bs-toggle="tooltip" title="Invoices" data-bs-placement="right">
+
                                 <i class="ph-duotone ph-chat-centered"></i>
                             </i>
-                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip"
-                                title="Invoices" data-bs-placement="right">Inv</i>
+                            <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Invoices" data-bs-placement="right">Inv</i>
                             <span class="item-name">Invoices</span>
                         </a>
                     </li>
-                    <!-- Sidebar Menu End -->
+                
+
+                <!-- Sidebar Menu End -->
             </div>
         </div>
     </aside>
+
+
+
+
 
     <main class="main-content">
         <div class="position-sticky top-0 z-3">
@@ -400,7 +377,9 @@ if (isset($_SESSION['admin_id'])) {
                                     <div class="icon-50">
                                         <span class="btn-inner d-inline-block position-relative">
 
+
                                         <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin" class="img-fluid rounded-circle object-fit-cover avatar-50">
+
                                             <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
                                         </span>
                                     </div>
@@ -471,7 +450,7 @@ if (isset($_SESSION['admin_id'])) {
                                                 </div>
                                             </a> -->
                                         <div class=" p-3 d-flex justify-content-center align-items-center">
-                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="/novelnest/logout.php"
+                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="<?= $baseUrl ?>/logout.php"
                                                 role="button">Sign out <i class="ph ph-sign-out"></i></a>
                                         </div>
                                     </div>
@@ -489,5 +468,50 @@ if (isset($_SESSION['admin_id'])) {
         <a href="dashboard.php">Dashboard</a>
         <a href="logout.php">Logout</a>
     </nav>
+
 </header> -->
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebarLinks = document.querySelectorAll('#sidebar-menu .nav-link');
+    const currentPath = window.location.pathname;
+
+    sidebarLinks.forEach(link => {
+      const linkPath = link.getAttribute('href').replace(/^.*\/\/[^\/]+/, '');
+
+      if (currentPath === linkPath) {
+        link.classList.add('active');
+        const parentDropdown = link.closest('.nav-item.iq-drop');
+        if (parentDropdown) {
+          const collapseElement = parentDropdown.querySelector('.collapse');
+          collapseElement?.classList.add('show');
+          const parentLink = parentDropdown.querySelector('[data-bs-toggle="collapse"]');
+          parentLink?.setAttribute('aria-expanded', 'true');
+          parentLink?.classList.add('active');
+        }
+      }
+
+      link.addEventListener('click', event => {
+        if (link.closest('.sub-nav')) {
+          event.stopPropagation();
+        }
+
+        sidebarLinks.forEach(navLink => navLink.classList.remove('active'));
+        link.classList.add('active');
+
+        const parentDropdown = link.closest('.nav-item.iq-drop');
+        if (parentDropdown) {
+          const collapseElement = parentDropdown.querySelector('.collapse');
+          collapseElement?.classList.add('show');
+          const parentLink = parentDropdown.querySelector('[data-bs-toggle="collapse"]');
+          parentLink?.setAttribute('aria-expanded', 'true');
+          parentLink?.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+
+
 

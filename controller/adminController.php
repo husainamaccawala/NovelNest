@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once('../config/db.php');
 require_once('../model/adminClass.php');
@@ -22,6 +23,7 @@ class adminController {
             return;
         }
 
+
         // Check in admin table using 'fullname'
         $admin = $this->adminModel->getAdminByFullname($fullname);
         if ($admin && $password == $admin['password']) { // No password hashing used
@@ -34,11 +36,13 @@ class adminController {
         if ($user && $password == $user['password']) { // No password hashing used
             $this->sendOtpToEmail($user['email'], 'user', $user['id']);
             return;
-        }
 
+        }
+    
         // If no match found
         echo json_encode(['status' => 'error', 'message' => 'Invalid credentials.']);
     }
+
 
     private function sendOtpToEmail($email, $type, $userId) {
         if (!$email) {
@@ -66,6 +70,7 @@ class adminController {
             echo json_encode(['status' => 'error', 'message' => 'Failed to send OTP. Please try again.']);
         }
     }
+
 }
 
 // Handle login request
