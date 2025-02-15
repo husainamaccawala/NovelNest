@@ -91,19 +91,21 @@ class PdfClass
         $sql = "SELECT 
                     pdfs.id, 
                     pdfs.title, 
+                    pdfs.book_id,
                     books.title AS book_title, 
                     pdfs.description, 
                     pdfs.file,
                     pdfs.size
                 FROM pdfs 
                 LEFT JOIN books ON pdfs.book_id = books.id";
-
+    
         $result = $this->conn->query($sql);
-
+    
         if ($result) {
-            return $result->fetch_all(MYSQLI_ASSOC); // Fetch all PDFs with book titles
+            return $result->fetch_all(MYSQLI_ASSOC); // Fetch all PDFs with book_id
         }
-
+    
         return false;
     }
+    
 }

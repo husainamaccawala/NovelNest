@@ -36,6 +36,10 @@ $books = $booksClass->getAllBooks(); // Fetch genres from the database
                                         <label for="pdf_file">Upload PDF</label>
                                         <input type="file" class="form-control" id="pdf_file" name="pdf_file" accept=".pdf" required>
                                     </div>
+                                    <div class="form-group">
+                                    <input type="hidden" id="existingFile" name="existing_file">
+                                         </div>
+                                    
                                     <div class="d-flex gap-2">
                                         <button type="reset" class="btn btn-danger">Reset</button>
                                         <button type="button" class="btn btn-primary" id="btn">Save</button>

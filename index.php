@@ -3,7 +3,7 @@ session_start();
 
 // Check if the admin is logged in
 if (!isset($_SESSION['admin_id']) || !isset($_SESSION['admin_name'])) {
-    header('Location: /novelnest/view/admin/adminSigninForm.php');
+    header('Location: /NovelNest/view/admin/adminSigninForm.php');
     exit;
 }
 
@@ -15,7 +15,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
 
 require_once __DIR__ . "/view/layout/header.php";
 
-require_once __DIR__."/view/admin/dashboard.php";
+require_once __DIR__."/view/dashboard/dashboard.php";
 
 // Include the footer
 require_once __DIR__ . "/view/layout/footer.php";
