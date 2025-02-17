@@ -1,0 +1,146 @@
+
+        #image {
+            margin-top: 10px;
+            box-shadow: 2px 2px 5px gray;
+            /* Subtle shadow for better aesthetics */
+            padding: 10px 20px;
+            /* Adjusted padding for better spacing */
+            font-weight: 600;
+            /* Slightly bolder text for better readability */
+            font-style: normal;
+            /* Removed italic for better readability */
+            font-size: 1.5em;
+            /* Adjusted font size for better fit */
+            border: 2px solid #e74c3c;
+            /* Updated border color for better contrast */
+            border-radius: 5px;
+            /* Rounded corners for a modern look */
+            margin-left: 10px;
+            display: inline-block;
+            white-space: nowrap;
+            line-height: 1.2;
+            /* Adjusted line height for better fit */
+            background-color: #f9f9f9;
+            /* Light background for better contrast */
+            text-align: center;
+            /* Center-align text */
+            text-decoration: line-through;
+            /* Add line-through effect */
+            text-decoration-color: #e74c3c;
+            /* Match line color with border color */
+            text-decoration-thickness: 2px;
+            /* Thicker line for better visibility */
+        }
+
+        #user-input {
+            box-shadow: 2px 2px 5px gray;
+            /* Subtle shadow for better aesthetics */
+            width: auto;
+            margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #34495e;
+            /* Updated border color for better contrast */
+            border-radius: 5px;
+            /* Rounded corners for a modern look */
+            height: auto;
+            /* Allow height to adjust based on content */
+        }
+
+        input {
+            border: 1px solid #34495e;
+            /* Updated border color for better contrast */
+            border-radius: 5px;
+            /* Rounded corners for a modern look */
+            padding: 8px;
+            /* Added padding for better spacing */
+            font-size: 1em;
+            /* Adjusted font size for better readability */
+        }
+
+        .inline {
+            display: inline-block;
+            vertical-align: middle;
+            /* Align elements vertically */
+        }
+
+        #btn {
+            box-shadow: 2px 2px 5px gray;
+            /* Subtle shadow for better aesthetics */
+            color: #ecf0f1;
+            /* Updated text color for better contrast */
+            margin: 10px;
+            background-color: #e74c3c;
+            /* Updated background color for better contrast */
+            border: none;
+            /* Remove default border */
+            border-radius: 5px;
+            /* Rounded corners for a modern look */
+            padding: 10px 20px;
+            /* Added padding for better spacing */
+            font-size: 1em;
+            /* Adjusted font size for better readability */
+            cursor: pointer;
+            /* Pointer cursor for better UX */
+        }
+
+        #btn:hover {
+            background-color: #c0392b;
+            /* Darker background on hover for better UX */
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .bg {
+            animation: slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+            bottom: 0;
+            left: -50%;
+            opacity: .5;
+            position: fixed;
+            right: -50%;
+            top: 0;
+            z-index: -1;
+        }
+
+        .bg2 {
+            animation-direction: alternate-reverse;
+            animation-duration: 4s;
+        }
+
+        .bg3 {
+            animation-duration: 5s;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, .8);
+            border-radius: .25em;
+            box-shadow: 0 0 .25em rgba(0, 0, 0, .25);
+            box-sizing: border-box;
+            left: 50%;
+            padding: 10vmin;
+            position: fixed;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            font-family: monospace;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(-25%);
+            }
+
+            100% {
+                transform: translateX(25%);
+            }
+        }
+   
