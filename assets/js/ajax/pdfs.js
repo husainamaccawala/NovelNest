@@ -1,5 +1,6 @@
 $(document).ready(function () {
     const baseUrl = '/NovelNest';
+    let table = $('#datatable').DataTable();
 
     // Function to load books dropdown
     function loadBooksDropdown() {
@@ -41,30 +42,35 @@ $(document).ready(function () {
                 try {
                     const data = JSON.parse(response);
                     if (data.status === 'success' && Array.isArray(data.data)) {
-                        let tableBody = '';
-                        data.data.forEach((pdf, index) => {
-                            tableBody += `
-                                <tr>
-                                    <td>${index + 1}</td>
-                                    <td>${pdf.title || 'N/A'}</td>
-                                    <td>${pdf.description || ''}</td>
-                                    <td>
-                                        <a href="${baseUrl}/assets/pdfs/${pdf.file}" 
-                                           target="_blank" 
-                                           class="btn btn-info btn-sm">View PDF</a>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm edit-btn" data-id="${pdf.id}">
-                                            Edit
-                                        </button>
-                                        <button class="btn btn-danger btn-sm delete-btn" data-id="${pdf.id}">
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            `;
+                        table.clear().draw();
+
+                        let serialNumber = 1;
+    
+                        data.data.forEach(pdf => {
+                            table.row.add([
+                                serialNumber,
+                                pdf.title || 'N/A',
+                                pdf.description || '',
+                                `<a href="${baseUrl}/assets/pdfs/${pdf.file}" class="btn btn-info btn-sm view-pdf" 
+                                    data-url="${baseUrl}/assets/pdfs/${pdf.file}">
+                                    <i class="ri-file-fill"></i>
+                                </a>`,
+                                `<button class="btn btn-primary btn-sm edit-btn" 
+                                    data-id="${pdf.id}" 
+                                    data-title="${pdf.title}" 
+                                    data-book_id="${pdf.book_id}" 
+                                    data-description="${pdf.description}" 
+                                    data-file="${pdf.file}">
+                                    <i class="las la-pen"></i>
+                                </button>
+                                <button class="btn btn-danger btn-sm delete-btn" data-id="${pdf.id}">
+                                    <i class="las la-trash-alt"></i>
+                                </button>`
+                            ]).draw(false);
+    
+                            serialNumber++;
                         });
-                        $('#pdfsTable tbody').html(tableBody);
+    
                     } else {
                         toastr.error('Failed to load PDFs');
                     }
@@ -79,6 +85,15 @@ $(document).ready(function () {
             }
         });
     }
+    
+     // View PDF in Modal
+     $(document).on('click', '.view-pdf', function (e) {
+        e.preventDefault();
+        const pdfUrl = $(this).data('url');
+        $('#pdfViewer').attr('src', pdfUrl);
+        $('#pdfModal').modal('show');
+    });
+
 
     // Function to reset modal
     function resetModal() {

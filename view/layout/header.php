@@ -1,4 +1,5 @@
 <?php
+ob_start();
 $baseUrl = '/NovelNest';
 ?>
 <!doctype html>
@@ -129,6 +130,8 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!--revenue Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -181,8 +184,10 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                         </a>
                     </li>
                     <li class="nav-item">
+
                         <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/index.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">
+
                                 <i class="ph-duotone ph-gauge"></i>
                             </i>
                             <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Dashboard" data-bs-placement="right">Db</i>
@@ -250,8 +255,10 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                         </a>
                     </li>
                     <li class="nav-item">
+
                         <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/subscription/subscription.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Subscription" data-bs-placement="right">
+
                                 <i class="ph-duotone ph-tag"></i>
                             </i>
                             <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Subscription" data-bs-placement="right">Sub</i>
@@ -259,8 +266,10 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                         </a>
                     </li>
                     <li class="nav-item">
+
                         <a class="nav-link" aria-current="page" href="<?= $baseUrl ?>/view/invoice/invoice.php">
                             <i class="icon" data-bs-toggle="tooltip" title="Invoices" data-bs-placement="right">
+
                                 <i class="ph-duotone ph-chat-centered"></i>
                             </i>
                             <i class="sidenav-mini-icon" data-bs-toggle="tooltip" title="Invoices" data-bs-placement="right">Inv</i>
@@ -439,7 +448,7 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
                                                 </div>
                                             </a> -->
                                         <div class=" p-3 d-flex justify-content-center align-items-center">
-                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="/novelnest/logout.php"
+                                            <a class="btn btn-primary d-flex align-items-center gap-1" href="<?= $baseUrl ?>/logout.php"
                                                 role="button">Sign out <i class="ph ph-sign-out"></i></a>
                                         </div>
                                     </div>
@@ -457,10 +466,12 @@ $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-
         <a href="dashboard.php">Dashboard</a>
         <a href="logout.php">Logout</a>
     </nav>
+
 </header> -->
 
 
 <script>
 </script>
+
 
 

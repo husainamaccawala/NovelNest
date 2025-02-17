@@ -1,5 +1,7 @@
 $(document).ready(function () {
     const baseUrl = '/NovelNest';
+    // Initialize DataTable
+    let table = $('#datatable').DataTable();
 
 // Function to load genres
 function loadGenres() {
@@ -38,11 +40,17 @@ function loadBooks() {
         method: 'GET',
         data: { action: 'get' },
         success: function (response) {
+            console.log("API Response:", response); // ✅ Debugging
+
             try {
                 const data = JSON.parse(response);
+                console.log("Parsed Data:", data); // ✅ Debugging
+
                 if (data.status === 'success' && Array.isArray(data.data)) {
-                    let tableBody = '';
-                    data.data.forEach((book, index) => {
+                    table.clear().draw(); // Clear existing table data
+
+                    let serialNumber = 1;
+                    data.data.forEach(book => {
                         let coverImage;
                         if (!book.cover_image || book.cover_image === '/') {
                             coverImage = `${baseUrl}/assets/images/default-book-cover.jpg`;
@@ -58,42 +66,40 @@ function loadBooks() {
                             coverImage = `${baseUrl}/${cleanPath}`;
                         }
 
-                        // console.log(`Clean Image URL for ${book.title}: ${coverImage}`); // Debugging line
+                        // Add row using DataTables
+                        table.row.add([
+                            serialNumber,
+                            `<img src="${coverImage}" alt="${book.title}" 
+                                class="book-cover-thumb" 
+                                style="width: 50px; height: 70px; object-fit: cover;">`,
+                            book.title,
+                            book.genre_name,
+                            book.author,
+                            book.description,
+                            `<button class="btn btn-primary btn-sm edit-btn" 
+                                data-id="${book.id}" 
+                                data-title="${book.title}" 
+                                data-genre="${book.genre_name}" 
+                                data-author="${book.author}" 
+                                data-description="${book.description}">
+                                <i class="las la-pen"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-btn" 
+                                data-id="${book.id}">
+                                <i class="las la-trash-alt"></i>
+                            </button>`
+                        ]).draw(false);
 
-                        tableBody += `
-                            <tr>
-                                <td>${index + 1}</td>
-                                <td>
-                                    <img src="${coverImage}"
-                                         alt="${book.title}"
-                                         class="book-cover-thumb"
-                                         style="width: 50px; height: 70px; object-fit: cover;">
-                                </td>
-                                <td>${book.title}</td>
-                                <td>${book.genre_name}</td>
-                                <td>${book.author}</td>
-                                <td class="description-column">${book.description}</td>
-                                <td>
-                                    <button class="btn btn-sm btn-primary edit-btn" data-id="${book.id}">
-                                        Edit
-                                    </button>
-                                    <button class="btn btn-sm btn-danger delete-btn" data-id="${book.id}">
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        `;
+                        serialNumber++;
                     });
-                    $('#booksTable tbody').html(tableBody);
+
                 } else {
                     toastr.error('Failed to load books');
-
                 }
             } catch (e) {
                 console.error('Error parsing books:', e);
                 toastr.error('Error loading books');
             }
-
         },
         error: function (xhr, status, error) {
             console.error('Books loading error:', error);
@@ -101,6 +107,7 @@ function loadBooks() {
         }
     });
 }
+
 
 
 // Function to reset modal

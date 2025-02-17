@@ -52,18 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $genreclass = $GenreClass->getGenre();
+    // Fetch all genres (not paginated)
+    $genres = $GenreClass->getGenre(); // Make sure this returns an array
 
-    if ($genreclass) {
-        echo json_encode([
-            "status" => "success",
-            "data" => $genreclass // Ensure this is an array
-        ]);
-    } else {
-        echo json_encode([
-            "status" => "error",
-            "message" => "Failed to fetch genres."
-        ]);
-    }
+    echo json_encode([
+        "status" => "success",
+        "data" => $genres // DataTables will handle pagination itself
+    ]);
 }
 ?>
