@@ -128,7 +128,7 @@ $baseUrl = '/NovelNest';
                                         </a>
                                     </div>
                                     <h1 class="text-primary reset-pw fw-900 d-flex ms-3 justify-content-center">Sign Up</h1>
-                                    <form method="POST" action="" enctype="multipart/form-data">
+                                    <form method="POST" action="" enctype="multipart/form-data" onsubmit="printmsg(event)">
                                         <div>
                                             <label>Profile Photo: <span>*</span></label>
                                             <input type="file" name="photo" accept="image/*" required>
@@ -159,19 +159,14 @@ $baseUrl = '/NovelNest';
                                         </div>
 
                                         <div id="user-input" class="inline">
-                                            <input type="text"
-                                                id="submit"
-                                                placeholder="Captcha code" />
+                                            <input type="text" id="submit" placeholder="Captcha code" />
                                         </div>
 
-                                        <div class="inline" onclick="generate()">
+                                        <div class="inline" onclick="generate()" style="cursor: pointer;">
                                             <i class="fas fa-sync"></i>
                                         </div>
 
-                                        <div id="image"
-                                            class="inline"
-                                            selectable="False">
-                                        </div>
+                                        <div id="image" class="inline"></div>
 
                                         <p id="key"></p>
 
@@ -179,7 +174,7 @@ $baseUrl = '/NovelNest';
                                             <input type="checkbox" name="terms" required>
                                             <label>I accept <a href="../extra-pages/terms-of-service.html">terms and conditions.</a></label>
                                         </div>
-                                        <button type="submit" class="btn btn-primary w-100" onclick="printmsg()">
+                                        <button type="submit" class="btn btn-primary w-100">
                                             <span class="btn-inner d-flex align-items-center justify-content-center gap-2">
                                                 <span class="text-center d-inline-block align-middle width-full">Sign Up</span>
                                                 <i class="ph ph-plus custom-ph-icons"></i>
@@ -204,6 +199,3 @@ $baseUrl = '/NovelNest';
     </div>
 
     <script src="<?= $baseUrl ?>/assets/js/ajax/signup.js" defer></script>
-
-    
-
