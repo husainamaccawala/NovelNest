@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__.'/../config/DB.php';
+$baseUrl = '/NovelNest';
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/config/db.php';
 
 class UserClass
 {
@@ -50,7 +51,6 @@ class UserClass
         }
     }
 
- 
 
 
     public function getUserByName($fullname) {

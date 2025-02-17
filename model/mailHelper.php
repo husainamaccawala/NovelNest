@@ -1,8 +1,10 @@
 <?php
+$baseUrl = '/NovelNest';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php'; // Make sure the autoload path is correct
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/vendor/autoload.php';
+
 
 class MailHelper {
     public function sendMail($to, $subject, $message) {

@@ -1,22 +1,23 @@
 <?php
 ob_start();
-$baseUrl = '/NovelNest';
-?>
-<!doctype html>
-<html lang="en" class="theme-fs-sm" data-bs-theme-color="default" dir="ltr">
-
-
-<!-- Mirrored from templates.iqonic.design/booksto-dist/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Dec 2024 11:46:07 GMT -->
-<?php
 // session_start();
+$baseUrl = '/NovelNest';
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/controller/adminController.php';
+// require_once('../controller/adminController.php');
 
+
+$adminName = 'Admin';
+$adminProfileImage = 'assets/images/avatars/09.jpg';
+
+// Check if admin is logged in
 if (isset($_SESSION['admin_id'])) {
-    // Admin is logged in, retrieve session variables
-    $adminName = $_SESSION['admin_name'] ?? 'Admin'; // Default to 'Admin' if not set
-    $adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/avatars/09.jpg'; // Default image if not set
-} else {
-    $adminName = 'Admin';
-    $adminProfileImage = 'assets/images/avatars/09.jpg';
+    $adminController = new AdminController();
+    $adminData = $adminController->getAdminProfile($_SESSION['admin_id']);
+
+    if ($adminData) {
+        $adminName = $adminData['fullname'];
+        $adminProfileImage = !empty($adminData['image']) ? $adminData['image'] : 'assets/images/avatars/09.jpg';
+    }
 }
 ?>
 
@@ -138,13 +139,13 @@ if (isset($_SESSION['admin_id'])) {
 <body class="  ">
     <!-- loader Start -->
 
-    <div id="loading">
+    <!-- <div id="loading">
         <div class="loader simple-loader">
             <div class="loader-body">
                 <img src="<?= $baseUrl ?>/assets\images\pageload.gif" alt="loader" class="light-loader img-fluid " width="300">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- loader END -->
     <aside class="sidebar sidebar-base " id="first-tour" data-toggle="main-sidebar"
@@ -372,30 +373,27 @@ if (isset($_SESSION['admin_id'])) {
 
 
                             <li class="nav-item dropdown" id="itemdropdown1">
-                                <a class="py-0 nav-link d-flex gap-3 justity-content-between align-items-center" href="#"
-                                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="icon-50">
-                                        <span class="btn-inner d-inline-block position-relative">
-
-
-                                        <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin" class="img-fluid rounded-circle object-fit-cover avatar-50">
-
-                                            <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
-                                        </span>
-                                    </div>
-                                    <div class="d-none d-lg-block">
-                                        <h6 class="mb-0 line-height"><?php echo htmlspecialchars($adminName); ?></h6>
-                                    </div>
-
-                                </a>
-                                <div class="p-0 sub-drop dropdown-menu dropdown-menu-end" aria-labelledby="notification-cart">
-                                    <div class="m-0 card-shadow card">
-                                        <div class="py-3 card-header rounded-top-3 bg-primary mb-0">
-                                            <div class="header-title">
-                                                <h5 class="mb-0 text-white"><?php echo htmlspecialchars($adminName); ?></h5>
-                                                <span class="text-white ">Available</span>
-                                            </div>
-                                        </div>
+    <a class="py-0 nav-link d-flex gap-3 justify-content-between align-items-center" href="#"
+        id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="icon-50">
+            <span class="btn-inner d-inline-block position-relative">
+                <img src="<?php echo $baseUrl . '/' . $adminProfileImage; ?>" alt="Admin"
+                    class="img-fluid rounded-circle object-fit-cover avatar-50">
+                <span class="bg-success p-1 rounded-circle position-absolute end-0 bottom-0 border border-3 border-white"></span>
+            </span>
+        </div>
+        <div class="d-none d-lg-block">
+            <h6 class="mb-0 line-height"><?php echo htmlspecialchars($adminName); ?></h6>
+        </div>
+    </a>
+    <div class="p-0 sub-drop dropdown-menu dropdown-menu-end" aria-labelledby="notification-cart">
+        <div class="m-0 card-shadow card">
+            <div class="py-3 card-header rounded-top-3 bg-primary mb-0">
+                <div class="header-title">
+                    <h5 class="mb-0 text-white"><?php echo htmlspecialchars($adminName); ?></h5>
+                    <span class="text-white">Available</span>
+                </div>
+            </div>
 
                                         <!-- <div class="p-0 card-body ">
                                             <a class="iq-sub-card" href="user/user-profile.html">

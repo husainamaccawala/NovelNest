@@ -15,31 +15,23 @@ $(document).ready(function () {
         console.log("Password:", password);  // Debugging
 
         $.ajax({
-            url: '../../controller/adminController.php',
-            method: 'POST',
-            data: {
-                action: 'login',
-                fullname: fullname,  // Passing trimmed value
-                password: password   // Passing trimmed value
-            },
+            url: "/novelnest/controller/adminController.php",
+            type: "POST",
+            data: { fullname: $("#fullname").val(), password: $("#password").val(), action: "login" },
+            dataType: "json", // Expect JSON response
             success: function(response) {
-                try {
-                    var data = JSON.parse(response); // Parse the JSON response
-                    if (data.status === 'success') {
-                        window.location.href = data.redirect; // Redirect if success
-                    } else {
-                        $('#message').html('<p style="color: red;">' + data.message + '</p>'); // Show error message if failure
-                    }
-                } catch (e) {
-                    console.error("Error parsing JSON response:", e);
-                    $('#message').html('<p style="color: red;">An error occurred while processing your request.</p>');
+                if (response.status === "success") {
+                    window.location.href = response.redirect;
+                } else {
+                    alert(response.message);
                 }
             },
             error: function(xhr, status, error) {
-                console.error("AJAX request failed:", status, error);
-                $('#message').html('<p style="color: red;">An error occurred. Please try again.</p>');
+                console.log("AJAX Error:", xhr.responseText);
+                alert("Something went wrong!");
             }
         });
+        
 
     });
 });

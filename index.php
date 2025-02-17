@@ -1,5 +1,6 @@
 <?php
 session_start();
+$baseUrl = '/NovelNest';
 
 
 if (isset($_SESSION['admin_id'])) {
@@ -14,9 +15,8 @@ if (isset($_SESSION['admin_id'])) {
     exit;
 }
 
-require_once __DIR__ . "/view/layout/header.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/view/layout/header.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/view/dashboard/dashboard.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/view/layout/footer.php"';
 
-require_once __DIR__ . "/view/admin/dashboard.php";
-
-require_once __DIR__ . "/view/layout/footer.php";
 ?>
