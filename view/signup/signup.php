@@ -6,9 +6,6 @@ $baseUrl = '/NovelNest';
 <!doctype html>
 <html lang="en" data-bs-theme="light" class="theme-fs-sm" dir="ltr">
 
-
-<!-- Mirrored from templates.iqonic.design/booksto-dist/html/auth/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Dec 2024 11:53:11 GMT -->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,6 +74,9 @@ $baseUrl = '/NovelNest';
     </link>
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/phosphor-icons/Fonts/fill/style.css">
     </link>
+
+    <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/signup.css" />
+
     <!--  <script src="/NovelNest/assets/js/ajax/admin.js"></script>  -->
     <script src="../../assets/js/ajax/admin.js"></script>
     <script>
@@ -104,9 +104,9 @@ $baseUrl = '/NovelNest';
 
     <div class="wrapper">
 
-    <div class="bg"></div>
-<div class="bg bg2"></div>
-<div class="bg bg3"></div>
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
 
         <div class="login-content">
             <div class="container">
@@ -203,224 +203,7 @@ $baseUrl = '/NovelNest';
 
     </div>
 
+    <script src="<?= $baseUrl ?>/assets/js/ajax/signup.js" defer></script>
 
-    <style>
-        #image {
-            margin-top: 10px;
-            box-shadow: 2px 2px 5px gray;
-            /* Subtle shadow for better aesthetics */
-            padding: 10px 20px;
-            /* Adjusted padding for better spacing */
-            font-weight: 600;
-            /* Slightly bolder text for better readability */
-            font-style: normal;
-            /* Removed italic for better readability */
-            font-size: 1.5em;
-            /* Adjusted font size for better fit */
-            border: 2px solid #e74c3c;
-            /* Updated border color for better contrast */
-            border-radius: 5px;
-            /* Rounded corners for a modern look */
-            margin-left: 10px;
-            display: inline-block;
-            white-space: nowrap;
-            line-height: 1.2;
-            /* Adjusted line height for better fit */
-            background-color: #f9f9f9;
-            /* Light background for better contrast */
-            text-align: center;
-            /* Center-align text */
-            text-decoration: line-through;
-            /* Add line-through effect */
-            text-decoration-color: #e74c3c;
-            /* Match line color with border color */
-            text-decoration-thickness: 2px;
-            /* Thicker line for better visibility */
-        }
+    
 
-        #user-input {
-            box-shadow: 2px 2px 5px gray;
-            /* Subtle shadow for better aesthetics */
-            width: auto;
-            margin-right: 10px;
-            padding: 10px;
-            border: 1px solid #34495e;
-            /* Updated border color for better contrast */
-            border-radius: 5px;
-            /* Rounded corners for a modern look */
-            height: auto;
-            /* Allow height to adjust based on content */
-        }
-
-        input {
-            border: 1px solid #34495e;
-            /* Updated border color for better contrast */
-            border-radius: 5px;
-            /* Rounded corners for a modern look */
-            padding: 8px;
-            /* Added padding for better spacing */
-            font-size: 1em;
-            /* Adjusted font size for better readability */
-        }
-
-        .inline {
-            display: inline-block;
-            vertical-align: middle;
-            /* Align elements vertically */
-        }
-
-        #btn {
-            box-shadow: 2px 2px 5px gray;
-            /* Subtle shadow for better aesthetics */
-            color: #ecf0f1;
-            /* Updated text color for better contrast */
-            margin: 10px;
-            background-color: #e74c3c;
-            /* Updated background color for better contrast */
-            border: none;
-            /* Remove default border */
-            border-radius: 5px;
-            /* Rounded corners for a modern look */
-            padding: 10px 20px;
-            /* Added padding for better spacing */
-            font-size: 1em;
-            /* Adjusted font size for better readability */
-            cursor: pointer;
-            /* Pointer cursor for better UX */
-        }
-
-        #btn:hover {
-            background-color: #c0392b;
-            /* Darker background on hover for better UX */
-        }
-
-        html {
-            height: 100%;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        .bg {
-            animation: slide 3s ease-in-out infinite alternate;
-            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
-            bottom: 0;
-            left: -50%;
-            opacity: .5;
-            position: fixed;
-            right: -50%;
-            top: 0;
-            z-index: -1;
-        }
-
-        .bg2 {
-            animation-direction: alternate-reverse;
-            animation-duration: 4s;
-        }
-
-        .bg3 {
-            animation-duration: 5s;
-        }
-
-        .content {
-            background-color: rgba(255, 255, 255, .8);
-            border-radius: .25em;
-            box-shadow: 0 0 .25em rgba(0, 0, 0, .25);
-            box-sizing: border-box;
-            left: 50%;
-            padding: 10vmin;
-            position: fixed;
-            text-align: center;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        h1 {
-            font-family: monospace;
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translateX(-25%);
-            }
-
-            100% {
-                transform: translateX(25%);
-            }
-        }
-    </style>
-
-
-    <script>
-        $(document).ready(function() {
-            $("form").on("submit", function(event) {
-                event.preventDefault();
-
-                let formData = new FormData(this);
-                formData.append("action", "signup");
-
-                $.ajax({
-                    url: "<?= $baseUrl ?>/controller/SignupController.php",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        let res = JSON.parse(response);
-                        alert(res.message);
-
-                        if (res.status === "success") {
-                            window.location.href = res.redirect;
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        alert("An error occurred: " + error);
-                    }
-                });
-            });
-        });
-
-        let captcha;
-
-        function generate() {
-
-            // Clear old input
-            document.getElementById("submit").value = "";
-
-            // Access the element to store
-            // the generated captcha
-            captcha = document.getElementById("image");
-            let uniquechar = "";
-
-            const randomchar =
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-            // Generate captcha for length of
-            // 5 with random character
-            for (let i = 1; i < 5; i++) {
-                uniquechar += randomchar.charAt(
-                    Math.random() * randomchar.length)
-            }
-
-            // Store generated input
-            captcha.innerHTML = uniquechar;
-        }
-
-        function printmsg() {
-            const usr_input = document
-                .getElementById("submit").value;
-
-            // Check whether the input is equal
-            // to generated captcha or not
-            if (usr_input == captcha.innerHTML) {
-                let s = document.getElementById("key")
-                    .innerHTML = "Matched";
-                generate();
-            } else {
-                let s = document.getElementById("key")
-                    .innerHTML = "not Matched";
-                generate();
-            }
-        }
-    </script>

@@ -21,7 +21,6 @@ $(document).ready(function () {
                             <td>${srNo++}</td> 
                             <td><img src="${profilePath}" alt="Profile Photo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></td> 
                             <td>${user.name}</td> 
-                            <td>${user.contact}</td> 
                             <td>${user.email}</td> 
                             <td>${user.gender}</td> 
                             <td>
@@ -63,7 +62,6 @@ $(document).ready(function () {
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#email').val(data.email);
-                    $('#phone-num').val(data.contact);
                     $(`input[name="gender"][value="${data.gender}"]`).prop('checked', true);
                     
                     // Fix profile photo preview by adding baseUrl
@@ -116,7 +114,6 @@ $(document).ready(function () {
         const contact = $('#phone-num').val();
         
         formData.set('gender', gender);
-        formData.set('contact', contact);
         
         $.ajax({
             url: baseUrl + '/controller/user-handler.php',

@@ -23,7 +23,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl . "/view/user/userForm.php";
                                         <th scope="col" class="border-bottom bg-primary text-white">Srno.</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Profile</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Name </th>
-                                        <th scope="col" class="border-bottom bg-primary text-white">Contact</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Email</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Gender</th>
                                         <th scope="col" class="border-bottom bg-primary text-white">Action</th>
