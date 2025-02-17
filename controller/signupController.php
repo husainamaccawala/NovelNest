@@ -12,8 +12,15 @@ class SignupController {
     }
 
     public function signup($name, $email, $gender, $password, $profile) {
-        if (empty($name) || empty($email)|| empty($gender) || empty($password) || empty($profile)) {
+        if (empty($name) || empty($email) || empty($gender) || empty($password) || empty($profile)) {
             echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
+            return;
+        }
+
+        // Validate email format
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid email format.']);
             return;
         }
 
@@ -25,6 +32,20 @@ class SignupController {
 
         // Hash the password before storing it
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Handle file upload validation
+        $validMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $maxFileSize = 2 * 1024 * 1024; // 2MB
+
+        if (!in_array($profile['type'], $validMimeTypes)) {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid file type. Only JPEG, PNG, and GIF files are allowed.']);
+            return;
+        }
+
+        if ($profile['size'] > $maxFileSize) {
+            echo json_encode(['status' => 'error', 'message' => 'File size exceeds the maximum limit of 2MB.']);
+            return;
+        }
 
         // Insert new user into the database
         $result = $this->userModel->createUser($name, $email, $gender, $hashedPassword, $profile);

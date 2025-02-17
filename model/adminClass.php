@@ -1,24 +1,32 @@
 <?php
-require_once('../config/db.php');
+$baseUrl = '/NovelNest';
+require_once $_SERVER['DOCUMENT_ROOT'] . $baseUrl .'/config/db.php';
 
 class Admin {
     private $conn;
 
     public function __construct() {
         $db = new DB();
-        $this->conn = $db->connection();
+        $this->conn = $db->Connection();
     }
 
     public function getAdminByFullname($fullname) {
-        $fullname = mysqli_real_escape_string($this->conn, $fullname);
-        $query = "SELECT * FROM admin WHERE fullname = '$fullname' LIMIT 1";
-        $result = mysqli_query($this->conn, $query);
-        return mysqli_fetch_assoc($result);
+        $query = "SELECT * FROM admin WHERE fullname = ? LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $fullname);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
-    public function updateLastLogin($id) {
-        $query = "UPDATE admin SET last_login = NOW() WHERE id = '$id'";
-        mysqli_query($this->conn, $query);
+    public function getAdminById($admin_id) {
+        $query = "SELECT fullname, image FROM admin WHERE id = ? LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $admin_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 }
 ?>
+    

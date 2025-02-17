@@ -13,36 +13,25 @@ $(document).ready(function () {
 
         console.log("Fullname:", fullname);  // Debugging
         console.log("Password:", password);  // Debugging
-        console.log("name:", fullname); 
 
         $.ajax({
-            url: '../../controller/adminController.php',
-            type: 'POST',
-            data: {
-                action: 'login',
-                fullname: fullname,
-                password: password,
-            },
-            success: function (response) {
-                console.log("Raw Response:", response); // Debug response
-                try {
-                    const res = JSON.parse(response);
-                    if (res.status === 'success') {
-                        $('#message').html('<p style="color: green;">Sign-in successful. Redirecting...</p>');
-                        setTimeout(() => {
-                            window.location.href = res.redirect;
-                        }, 1000);
-                    } else {
-                        $('#message').html('<p style="color: red;">' + res.message + '</p>');
-                    }
-                } catch (e) {
-                    console.error("Invalid JSON:", e);
-                    $('#message').html('<p style="color: red;">Server Error: Invalid JSON Response</p>');
+            url: "/novelnest/controller/adminController.php",
+            type: "POST",
+            data: { fullname: $("#fullname").val(), password: $("#password").val(), action: "login" },
+            dataType: "json", // Expect JSON response
+            success: function(response) {
+                if (response.status === "success") {
+                    window.location.href = response.redirect;
+                } else {
+                    alert(response.message);
                 }
             },
-            error: function () {
-                $('#message').html('<p style="color: red;">An error occurred. Please try again.</p>');
-            },
+            error: function(xhr, status, error) {
+                console.log("AJAX Error:", xhr.responseText);
+                alert("Something went wrong!");
+            }
         });
+        
+
     });
 });

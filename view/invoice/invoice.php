@@ -7,8 +7,10 @@ if (!isset($_SESSION['admin_id'])) {
 }
 $baseUrl = '/novelnest';
 
-$adminName = $_SESSION['admin_name'];
-$adminProfileImage = $_SESSION['admin_profile_image'] ?? 'assets/images/default-avatar.jpg'; 
+$adminName = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin';
+$adminProfileImage = isset($_SESSION['admin_profile_image']) && $_SESSION['admin_profile_image'] !== '' 
+                     ? $_SESSION['admin_profile_image'] 
+                     : '/assets/images/default-profile.png';
 
 require_once __DIR__ . '/../../config/db.php';
 require_once __DIR__ . '/../../controller/invoiceController.php';

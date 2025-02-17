@@ -3,15 +3,10 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-<<<<<<< HEAD
-        'reference' => '4dfe119042c902677e5ee4e14d000c40f938fc2b',
-=======
-<<<<<<< HEAD
-        'reference' => '5c70febb067be6e5e2206530919f8c2e14783f7b',
-=======
-        'reference' => '4dfe119042c902677e5ee4e14d000c40f938fc2b',
->>>>>>> 76f2d34 (arrange files)
->>>>>>> 1f398fb8ff0ca02610106984262e1cc43675ba59
+
+        'reference' => '2110f1b506a164f2c1f567f159a9531acd7ad2ec',
+
+
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -21,15 +16,10 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-<<<<<<< HEAD
-            'reference' => '4dfe119042c902677e5ee4e14d000c40f938fc2b',
-=======
-<<<<<<< HEAD
-            'reference' => '5c70febb067be6e5e2206530919f8c2e14783f7b',
-=======
-            'reference' => '4dfe119042c902677e5ee4e14d000c40f938fc2b',
->>>>>>> 76f2d34 (arrange files)
->>>>>>> 1f398fb8ff0ca02610106984262e1cc43675ba59
+
+            'reference' => '2110f1b506a164f2c1f567f159a9531acd7ad2ec',
+
+
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
