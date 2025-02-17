@@ -13,6 +13,7 @@ $(document).ready(function () {
         $.ajax({
             url: `${baseUrl}/controller/user-handler.php`,
             method: 'GET',
+<<<<<<< HEAD
             data: { action: 'get' },
             success: function (response) {
     
@@ -59,6 +60,30 @@ $(document).ready(function () {
                 } catch (e) {
                     console.error('Error parsing users:', e);
                     toastr.error('Error loading users');
+=======
+            dataType: 'json',
+            success: function (data) {
+                let rows = '';
+                if (data && Array.isArray(data)) {
+                    let srNo = 1; // Initialize the serial number for rows
+                    data.forEach(user => {
+                        // Ensure the profile path is complete
+                        const profilePath = user.profile ? baseUrl + '/' + user.profile : baseUrl + '/assets/images/default-profile.jpg';
+                        rows += `
+                        <tr>
+                            <td>${srNo++}</td> 
+                            <td><img src="${profilePath}" alt="Profile Photo" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></td> 
+                            <td>${user.name}</td> 
+                            <td>${user.email}</td> 
+                            <td>${user.gender}</td> 
+                            <td>
+                                <button class="btn btn-primary btn-sm editBtn" data-id="${user.id}">Edit</button>
+                                <button class="btn btn-danger btn-sm deleteBtn" data-id="${user.id}">Delete</button>
+                            </td> 
+                        </tr>`;
+                    });
+                    $('#user-table tbody').html(rows);
+>>>>>>> 76f2d34 (arrange files)
                 }
             },
             error: function (xhr, status, error) {
@@ -96,7 +121,6 @@ $(document).ready(function () {
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#email').val(data.email);
-                    $('#phone-num').val(data.contact);
                     $(`input[name="gender"][value="${data.gender}"]`).prop('checked', true);
                     
                     // Fix profile photo preview by adding baseUrl
@@ -149,7 +173,6 @@ $(document).ready(function () {
         const contact = $('#phone-num').val();
         
         formData.set('gender', gender);
-        formData.set('contact', contact);
         
         $.ajax({
             url: baseUrl + '/controller/user-handler.php',

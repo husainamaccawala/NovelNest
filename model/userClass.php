@@ -16,7 +16,6 @@ class UserClass
     public function createUser($data)
     {
         $name = $this->db->real_escape_string($data['name']);
-        $contact = $this->db->real_escape_string($data['contact']);
         $email = $this->db->real_escape_string($data['email']);
         $gender = $this->db->real_escape_string($data['gender']);
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -25,7 +24,7 @@ class UserClass
         $profilePath = $this->uploadImage($_FILES['photo']);
 
         $query = "INSERT INTO user (name, contact, email, gender, password, profile)
-                  VALUES ('$name', '$contact', '$email', '$gender', '$password', '$profilePath')";
+                  VALUES ('$name', '$email', '$gender', '$password', '$profilePath')";
 
         return $this->db->query($query);
     }
@@ -76,12 +75,11 @@ class UserClass
     {
         $id = $this->db->real_escape_string($data['id']);
         $name = $this->db->real_escape_string($data['name']);
-        $contact = $this->db->real_escape_string($data['contact']);
         $email = $this->db->real_escape_string($data['email']);
         $gender = $this->db->real_escape_string($data['gender']);
 
         // Initialize query parts
-        $updateFields = "name='$name', contact='$contact', email='$email', gender='$gender'";
+        $updateFields = "name='$name', email='$email', gender='$gender'";
 
         // Always hash password if provided
         if (!empty($data['password'])) {

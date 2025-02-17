@@ -27,16 +27,7 @@
             <input type="text" class="form-control" id="name" name="name" required>
           </div>
 
-          <!-- Contact Field -->
-          <div class="form-group">
-            <label for="contact">Contact</label>
-            <div class="input-group">
-              <div class="col-auto">
-                <input type="text" name="country-code" value="+91" size="2" class="form-control" id="country-code" />
-              </div>
-              <input type="text" name="phone_num" size="10" class="form-control" id="phone-num" placeholder="Enter phone number" />
-            </div>
-          </div>
+          
 
           <!-- Email Field -->
           <div class="form-group">
