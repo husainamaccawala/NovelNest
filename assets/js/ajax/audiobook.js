@@ -40,11 +40,11 @@ $(document).ready(function () {
             method: 'GET',
             data: { action: 'get' },
             success: function (response) {
-                console.log("API Response:", response); // ✅ Debugging
+                console.log("API Response:", response); 
     
                 try {
                     const data = JSON.parse(response);
-                    console.log("Parsed Data:", data); // ✅ Debugging
+                    console.log("Parsed Data:", data); 
     
                     if (data.status === 'success' && Array.isArray(data.data)) {
                         table.clear().draw(); // Clear existing table data

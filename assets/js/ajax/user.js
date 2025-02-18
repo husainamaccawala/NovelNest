@@ -3,64 +3,11 @@ $(document).ready(function () {
 
     const baseUrl = '/NovelNest';
 
-      // Initialize DataTable
-      let table = $('#datatable').DataTable();
-
     // Fetch and display users
-   
-
-    function loadUsers() {
+    function fetchUsers() {
         $.ajax({
-            url: `${baseUrl}/controller/user-handler.php`,
+            url: baseUrl + '/controller/user-handler.php',
             method: 'GET',
-<<<<<<< HEAD
-            data: { action: 'get' },
-            success: function (response) {
-    
-                try {
-                    const data = JSON.parse(response);
-                    if (Array.isArray(data) && data.length > 0) {
-                        table.clear().draw(); //Clear existing rows
-    
-                        let serialNumber = 1;
-    
-                        data.forEach(user => {
-                            const profilePath = user.profile 
-                                ? `${baseUrl}/${user.profile}` 
-                                : `${baseUrl}/assets/images/default-profile.jpg`;
-    
-                            table.row.add([
-                                serialNumber,
-                                `<img src="${profilePath}" alt="Profile Photo" 
-                                    style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">`,
-                                user.name,
-                                user.contact,
-                                user.email,
-                                user.gender,
-                                `<button class="btn btn-primary btn-sm editBtn" 
-                                    data-id="${user.id}" 
-                                    data-name="${user.name}" 
-                                    data-contact="${user.contact}" 
-                                    data-email="${user.email}" 
-                                    data-gender="${user.gender}">
-                                    <i class="las la-pen"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm deleteBtn" 
-                                    data-id="${user.id}">
-                                    <i class="las la-trash-alt"></i>
-                                </button>`
-                            ]).draw(false);
-    
-                            serialNumber++;
-                        });
-    
-                    } else {
-                        toastr.warning('No users found');
-                    }
-                } catch (e) {
-                    console.error('Error parsing users:', e);
-                    toastr.error('Error loading users');
-=======
             dataType: 'json',
             success: function (data) {
                 let rows = '';
@@ -83,19 +30,13 @@ $(document).ready(function () {
                         </tr>`;
                     });
                     $('#user-table tbody').html(rows);
->>>>>>> 76f2d34 (arrange files)
                 }
-            },
-            error: function (xhr, status, error) {
-                console.error('Users loading error:', error);
-                toastr.error('Error fetching users data');
             }
         });
     }
-    
-    
+
     // Initial fetch
-    loadUsers();
+    fetchUsers();
 
     // Add User Button: Show modal for creating user
     $('#addUserBtn').click(function () {
@@ -153,7 +94,7 @@ $(document).ready(function () {
                 data: { action: 'delete', id: userId },
                 success: function (response) {
                     toastr.success('User deleted successfully!');
-                    loadUsers(); // Refresh the user list
+                    fetchUsers(); // Refresh the user list
                 },
                 error: function(xhr, status, error) {
                     toastr.error('Error deleting user. Please try again.');
@@ -184,7 +125,7 @@ $(document).ready(function () {
                 const action = $('#action').val() === 'create' ? 'created' : 'updated';
                 toastr.success(`User ${action} successfully!`);
                 $('#userModal').modal('hide');
-                loadUsers(); // Refresh the user list
+                fetchUsers(); // Refresh the user list
             },
             error: function(xhr, status, error) {
                 console.error("Form submission error:", error);
