@@ -17,6 +17,13 @@
             </select>
           </div>
 
+          <!-- Audiobook Name Field -->
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Audiobook Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter audiobook name" required>
+          </div>
+
+
           <!--description-->
           <div class="form-group mb-3">
             <label for="description" class="form-label">Description</label>

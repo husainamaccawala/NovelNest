@@ -40,7 +40,7 @@ class AdminController {
 
         // Check in user table using 'name'
         $user = $this->userModel->getUserByName($fullname);
-        if ($user && $password == $user['password']) { // No password hashing used
+        if ($user && password_verify($password, $user['password'])) { 
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_profile_image'] = $user['profile'] ?? 'assets/images/avatars/09.jpg';
