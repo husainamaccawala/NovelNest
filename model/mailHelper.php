@@ -16,8 +16,8 @@ class MailHelper {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com'; // SMTP host for Gmail
             $mail->SMTPAuth = true;
-            $mail->Username = 'mishrutisanchaniya1104@gmail.com'; // Your email address (Gmail)
-            $mail->Password = 'iwfv pxwtjezf gmqr'; // Use the app password here
+            $mail->Username = 'novelnestinfo@gmail.com'; // Your email address (Gmail)
+            $mail->Password = 'bxgo rmjq nvlu ywaa'; // Use the app password here
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
