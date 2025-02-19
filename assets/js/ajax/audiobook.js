@@ -40,11 +40,11 @@ $(document).ready(function () {
             method: 'GET',
             data: { action: 'get' },
             success: function (response) {
-                console.log("API Response:", response); 
+                console.log("API Response:", response);
     
                 try {
                     const data = JSON.parse(response);
-                    console.log("Parsed Data:", data); 
+                    console.log("Parsed Data:", data);
     
                     if (data.status === 'success' && Array.isArray(data.data)) {
                         table.clear().draw(); // Clear existing table data
@@ -56,20 +56,22 @@ $(document).ready(function () {
                             table.row.add([
                                 serialNumber,
                                 audiobook.book_name,
+                                audiobook.name,  // Add Audiobook Name
                                 audiobook.description,
                                 audiobook.narrator,
                                 `<audio controls preload="none" class="audiobook-player">
                                     <source src="${baseUrl}/assets/audiobooks/${audiobook.file}?t=${timestamp}" type="audio/mpeg">
                                     Your browser does not support the audio element.
                                 </audio>`,
-                                `<button class="btn btn-primary btn-sm edit-btn" 
-                                    data-id="${audiobook.id}" 
-                                    data-book_name="${audiobook.book_name}" 
-                                    data-description="${audiobook.description}" 
-                                    data-narrator="${audiobook.narrator}">
+                                `<button class="btn btn-primary btn-sm edit-btn"
+                                    data-id="${audiobook.id}"
+                                    data-book_name="${audiobook.book_name}"
+                                    data-description="${audiobook.description}"
+                                    data-narrator="${audiobook.narrator}"
+                                    data-name="${audiobook.name}">  <!-- Add name to data attributes -->
                                     <i class="las la-pen"></i>
                                 </button>
-                                <button class="btn btn-danger btn-sm delete-btn" 
+                                <button class="btn btn-danger btn-sm delete-btn"
                                     data-id="${audiobook.id}">
                                     <i class="las la-trash-alt"></i>
                                 </button>`
@@ -84,7 +86,7 @@ $(document).ready(function () {
                                 this.load();
                             });
                         }, 500);
-                        
+    
                     } else {
                         toastr.error('Failed to load audiobooks');
                     }
@@ -100,30 +102,31 @@ $(document).ready(function () {
         });
     }
     
+    
     // Handle form submission (Add/Update)
     $('#audiobookForm').submit(function (e) {
         e.preventDefault();
-
+    
         // Basic validation
-        const requiredFields = ['book_id', 'description', 'narrator'];
+        const requiredFields = ['book_id', 'description', 'narrator', 'name'];  // Add name to required fields
         let isValid = true;
-
+    
         requiredFields.forEach(field => {
             if (!$(`#${field}`).val()) {
                 toastr.error(`${field.replace('_', ' ')} is required`);
                 isValid = false;
             }
         });
-
+    
         if (!isValid) return;
-
+    
         const formData = new FormData(this);
         const id = $('#audiobookId').val();
-
+    
         // Add action type
         formData.append('action', id ? 'update' : 'add');
         if (id) formData.append('id', id);
-
+    
         // Check if a new file is being uploaded
         const fileInput = $('#audio_file')[0];
         if (fileInput.files.length > 0) {
@@ -136,7 +139,7 @@ $(document).ready(function () {
             // Append existing file name if no new file is uploaded
             formData.append('existing_file', $('#existing_audio_file').val());
         }
-
+    
         $.ajax({
             url: `${baseUrl}/controller/audiobookController.php`,
             type: 'POST',
@@ -151,7 +154,7 @@ $(document).ready(function () {
                         $('#audiobookModal').modal('hide');
                         $('#audiobookForm')[0].reset();
                         $('#audiobookId').val('');
-
+    
                         setTimeout(() => {
                             loadAudiobooks();
                         }, 500);
@@ -169,6 +172,7 @@ $(document).ready(function () {
             }
         });
     });
+    
 
     // Edit button handler
     $(document).on('click', '.edit-btn', function () {
@@ -249,3 +253,4 @@ $(document).ready(function () {
     loadBooks();
     loadAudiobooks();
 });
+

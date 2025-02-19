@@ -44,7 +44,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'book_id' => $_POST['book_id'],
                     'description' => $_POST['description'],
                     'narrator' => $_POST['narrator'],
-                    'file' => $fileName
+                    'file' => $fileName,
+                    'name' => $_POST['name']  // Include the name field
                 ]);
 
                 if ($result) {
@@ -62,7 +63,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
                     'book_id' => $_POST['book_id'],
                     'description' => $_POST['description'],
                     'narrator' => $_POST['narrator'],
-                    'file' => null
+                    'file' => null,
+                    'name' => $_POST['name']  // Include the name field
                 ];
 
                 // Fetch existing file name from database
@@ -139,3 +141,4 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode(["status" => "error", "message" => "Invalid request method"]);
 }
 ?>
+

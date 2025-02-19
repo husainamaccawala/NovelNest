@@ -33,43 +33,46 @@ class Audiobook {
     }
 
     public function addAudiobook($data) {
-        $query = "INSERT INTO audiobooks (book_id, description, narrator, file) 
-                 VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO audiobooks (book_id, description, narrator, file, name)
+                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("isss", 
+        $stmt->bind_param("issss",
             $data['book_id'],
             $data['description'],
             $data['narrator'],
-            $data['file']
+            $data['file'],
+            $data['name']  // Add the name field
         );
         return $stmt->execute();
     }
 
     public function updateAudiobook($data) {
-        $query = "UPDATE audiobooks 
-                 SET book_id = ?, description = ?, narrator = ?" .
+        $query = "UPDATE audiobooks
+                 SET book_id = ?, description = ?, narrator = ?, name = ?" .  // Add the name field
                  ($data['file'] ? ", file = ?" : "") .
                  " WHERE id = ?";
-        
+    
         $stmt = $this->db->prepare($query);
-        
+    
         if ($data['file']) {
-            $stmt->bind_param("isssi", 
+            $stmt->bind_param("issssi",
                 $data['book_id'],
                 $data['description'],
                 $data['narrator'],
+                $data['name'],  // Add the name field
                 $data['file'],
                 $data['id']
             );
         } else {
-            $stmt->bind_param("issi", 
+            $stmt->bind_param("isssi",
                 $data['book_id'],
                 $data['description'],
                 $data['narrator'],
+                $data['name'],  // Add the name field
                 $data['id']
             );
         }
-        
+    
         return $stmt->execute();
     }
 
@@ -81,3 +84,4 @@ class Audiobook {
     }
 }
 ?>
+
