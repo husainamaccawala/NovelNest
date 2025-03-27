@@ -7,7 +7,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/NovelNest/model/SubscriptionClass.php
 
 
 $dbInstance = new DB();
-$db = $dbInstance->connection(); //  Correctly get the database connection
+$db = $dbInstance->connection(); // Correctly get the database connection
+
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+}
+echo "Connected successfully";
 
 
 
@@ -23,7 +28,7 @@ class SubscriptionController {
     public function getAllSubscriptions() {
         return $this->subscriptionModel->getAllSubscriptions();
     }
-
+ 
 
     //  Automatically fetch & display subscriptions when the admin opens the page
     public function handleSubscriptionPage() {

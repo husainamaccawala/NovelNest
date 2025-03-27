@@ -46,4 +46,4 @@ public function createUser($name, $email, $gender, $password, $profile) {
     }
 }
 }
-?>
+?> 

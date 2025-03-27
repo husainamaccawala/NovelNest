@@ -1,14 +1,11 @@
 <?php
-
-// Check if admin session variables exist
-$adminName = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'Admin';
-$adminProfileImage = isset($_SESSION['admin_profile_image']) && $_SESSION['admin_profile_image'] !== ''
-    ? $_SESSION['admin_profile_image']
-    : '/assets/images/default-profile.png';
-
 // Include necessary files
 require_once $_SERVER['DOCUMENT_ROOT'] . "/NovelNest/config/db.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/NovelNest/controller/SubscriptionController.php";
+
+// Fetch all subscriptions
+$controller = new SubscriptionController($db);
+$userSubscriptions = $controller->getAllSubscriptions();
 
 // Include the header
 require_once $_SERVER['DOCUMENT_ROOT'] . "/NovelNest/view/layout/header.php";
@@ -48,7 +45,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/NovelNest/view/layout/header.php";
                                         <?php foreach ($userSubscriptions as $subscription): ?>
                                             <tr>
                                                 <td><?= $srNo++; ?></td>
-                                                <td><?= htmlspecialchars($subscription['name']); ?></td>
+                                                <td><?= htmlspecialchars($subscription['user_name']); ?></td>
                                                 <td><?= htmlspecialchars($subscription['email']); ?></td>
                                                 <td><?= htmlspecialchars($subscription['subscription_type']); ?></td>
                                                 <td><?= htmlspecialchars($subscription['start_date']); ?></td>
@@ -67,8 +64,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/NovelNest/view/layout/header.php";
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
-
-
                             </table>
                         </div>
                     </div>

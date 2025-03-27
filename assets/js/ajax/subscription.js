@@ -6,13 +6,14 @@ $(document).ready(function () {
             data: { action: "fetchSubscriptions" }, // AJAX action for controller
             dataType: "json",
             success: function (response) {
+                console.log("Subscriptions data:", response); // Debug
                 $("#subscriptionTableBody").empty(); // Clear existing data
                 if (response.length > 0) {
                     $.each(response, function (index, subscription) {
                         $("#subscriptionTableBody").append(`
                             <tr>
                                 <td>${index + 1}</td>
-                                <td>${subscription.name}</td>
+                                <td>${subscription.user_name}</td>
                                 <td>${subscription.email}</td>
                                 <td>${subscription.subscription_type}</td>
                                 <td>${subscription.start_date}</td>

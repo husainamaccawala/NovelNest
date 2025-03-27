@@ -11,8 +11,8 @@ class SignupController {
         $this->userModel = new SignupModel();
     }
 
-    public function signup($name, $email, $gender, $password, $profile) {
-        if (empty($name) || empty($email) || empty($gender) || empty($password) || empty($profile)) {
+    public function signup($name, $email, $gender, $password, $confirmPassword, $profile) {
+        if (empty($name) || empty($email) || empty($gender) || empty($password) || empty($confirmPassword) || empty($profile)) {
             echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
             return;
         }
@@ -24,11 +24,11 @@ class SignupController {
             return;
         }
 
-        // Check if the email already exists
-        // if ($this->userModel->getUserByEmail($email)) {
-        //     echo json_encode(['status' => 'error', 'message' => 'Email already exists.']);
-        //     return;
-        // }
+        // Check if passwords match
+        if ($password !== $confirmPassword) {
+            echo json_encode(['status' => 'error', 'message' => 'Passwords do not match.']);
+            return;
+        }
 
         // Hash the password before storing it
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         trim($_POST['email']),
         trim($_POST['gender']),
         trim($_POST['password']),
+        trim($_POST['confirm-password']),  // Added confirm password
         $_FILES['photo']
     );
 }
