@@ -88,6 +88,7 @@ require_once __DIR__."/../../controller/verifyOtpController.php";
             }
         })();
     </script>
+    
 </head>
 
 <body class=" ">
@@ -101,7 +102,7 @@ require_once __DIR__."/../../controller/verifyOtpController.php";
   </div> -->
 
     <div class="wrapper">
-        <div class="login-content">
+        <div class="login-content form-background">
             <div class="container">
                 <div class="row d-flex align-items-center justify-content-center vh-100 w-100 m-0">
                     <div class="col-lg-5 col-md-12 align-self-center bg-primary py-3">

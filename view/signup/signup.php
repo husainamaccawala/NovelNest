@@ -2,7 +2,6 @@
 $baseUrl = '/NovelNest';
 ?>
 
-
 <!doctype html>
 <html lang="en" data-bs-theme="light" class="theme-fs-sm" dir="ltr">
 
@@ -33,7 +32,6 @@ $baseUrl = '/NovelNest';
     <!-- font-awesome css -->
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/font-awesome/css/font-awesome.min.css" />
 
-
     <!-- booksto Design System Css -->
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/booksto.min5438.css?v=1.2.0" />
 
@@ -50,14 +48,12 @@ $baseUrl = '/NovelNest';
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 
-
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
         crossorigin="anonymous">
-
 
     <link rel="stylesheet" href="<?= $baseUrl ?>/assets/vendor/remixicon/fonts/remixicon.css" />
 
@@ -90,6 +86,7 @@ $baseUrl = '/NovelNest';
             }
         })();
     </script>
+    
 </head>
 
 <body onload="generate()">
@@ -104,13 +101,9 @@ $baseUrl = '/NovelNest';
 
     <div class="wrapper">
 
-        <div class="bg"></div>
-        <div class="bg bg2"></div>
-        <div class="bg bg3"></div>
-
-        <div class="login-content">
+        <div class="login-content form-background">
             <div class="container">
-                <div class="row d-flex align-items-center justify-content-center vh-100 w-100 m-0">
+                <div class="row d-flex align-items-center justify-content-center vh-80 w-100 m-0">
                     <div class="col-lg-5 col-md-12 align-self-center bg-primary py-3" style="width: 60%;">
                         <div class="card p-0 mb-0">
                             <div class="card-body auth-card">
@@ -199,3 +192,6 @@ $baseUrl = '/NovelNest';
     </div>
 
     <script src="<?= $baseUrl ?>/assets/js/ajax/signup.js" defer></script>
+</body>
+
+</html>

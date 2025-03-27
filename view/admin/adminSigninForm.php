@@ -40,6 +40,8 @@ $baseUrl = '/NovelNest';
   <!-- booksto Design System Css -->
   <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/booksto.min5438.css?v=1.2.0" />
 
+
+
   <!-- Custom Css -->
   <link rel="stylesheet" href="<?= $baseUrl ?>/assets/css/custom.min5438.css?v=1.2.0" />
 
@@ -89,6 +91,7 @@ $baseUrl = '/NovelNest';
       }
     })();
   </script>
+
 </head>
 
 <body class=" ">
@@ -103,18 +106,15 @@ $baseUrl = '/NovelNest';
 
   <div class="wrapper">
 
-    <div class="bg"></div>
-    <div class="bg bg2"></div>
-    <div class="bg bg3"></div>
 
-    <div class="login-content">
+    <div class="login-content form-background">
       <div class="container">
         <div class="row d-flex align-items-center justify-content-center vh-100 w-100 m-0">
           <div class="col-lg-5 col-md-12 align-self-center bg-primary py-3">
             <div class="card p-0 mb-0">
-              <div class="card-body auth-card">
+              <div class="card-body auth-card" >
                 <div class="logo-img">
-                  <a href="../index-2.html" class="navbar-brand d-flex align-items-center mb-2 justify-content-center">
+                  <a href="<?= $baseUrl ?>/index.php" class="navbar-brand d-flex align-items-center mb-2 justify-content-center">
                     <!--Logo start-->
                     <div class="logo-main auth-logo">
 

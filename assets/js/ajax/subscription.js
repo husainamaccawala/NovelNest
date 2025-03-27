@@ -1,25 +1,41 @@
-document.querySelectorAll('#subscribe-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const subscriptionType = button.getAttribute('data-tier');
-        const userId = document.getElementById('user-id').value;
+$(document).ready(function () {
+    function loadSubscriptions() {
+        $.ajax({
+            url: "/NovelNest/controller/subscriptionController.php",
+            type: "POST",
+            data: { action: "fetchSubscriptions" }, // AJAX action for controller
+            dataType: "json",
+            success: function (response) {
+                $("#subscriptionTableBody").empty(); // Clear existing data
+                if (response.length > 0) {
+                    $.each(response, function (index, subscription) {
+                        $("#subscriptionTableBody").append(`
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${subscription.name}</td>
+                                <td>${subscription.email}</td>
+                                <td>${subscription.subscription_type}</td>
+                                <td>${subscription.start_date}</td>
+                                <td>${subscription.end_date}</td>
+                                <td>${subscription.subscription_status}</td>
+                                <td>${subscription.plan_name}</td>
+                                <td>₹${subscription.plan_price}</td>
+                                <td>
+                                    <a href="${subscription.invoice_url}" target="_blank">📄</a>
+                                </td>
+                            </tr>
+                        `);
+                    });
+                } else {
+                    $("#subscriptionTableBody").html("<tr><td colspan='10'>No subscriptions found.</td></tr>");
+                }
+            },
+            error: function () {
+                alert("Error loading subscriptions.");
+            }
+        });
+    }
 
-        fetch('../../controller/subscriptionController.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `action=updateSubscription&user_id=${userId}&subscription_type=${subscriptionType}`
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then(data => {
-            alert(data.message);
-            if (data.success) {
-                location.reload();
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+    loadSubscriptions(); // Load subscriptions on page load
+    setInterval(loadSubscriptions, 10000); // Refresh every 10 seconds
 });

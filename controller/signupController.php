@@ -25,10 +25,10 @@ class SignupController {
         }
 
         // Check if the email already exists
-        if ($this->userModel->getUserByEmail($email)) {
-            echo json_encode(['status' => 'error', 'message' => 'Email already exists.']);
-            return;
-        }
+        // if ($this->userModel->getUserByEmail($email)) {
+        //     echo json_encode(['status' => 'error', 'message' => 'Email already exists.']);
+        //     return;
+        // }
 
         // Hash the password before storing it
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);

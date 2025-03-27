@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['otp'])) {
         } else if ($_SESSION['otp_type'] == 'user') {
             $_SESSION['user_id'] = $_SESSION['otp_user_id']; // Store user session
             unset($_SESSION['otp'], $_SESSION['otp_expiry'], $_SESSION['otp_user_id'], $_SESSION['otp_type']);
-            echo json_encode(['status' => 'success', 'redirect' => '/client-site']);
+            echo json_encode(['status' => 'success', 'redirect' => '/client-site/view/pages/subscription.php']);
         }
     }
 }
